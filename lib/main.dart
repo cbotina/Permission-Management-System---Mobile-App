@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:pms_app/common/components/buttons/primary_button.dart';
-import 'package:pms_app/common/components/loading/loading_button_indicator.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:pms_app/common/themes/light_theme.dart';
-import 'package:pms_app/pages/main_menu_page.dart';
-import 'package:pms_app/pages/permission_request_page.dart';
 import 'package:pms_app/pages/student_schedule_page.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:pms_app/pages/test_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await dotenv.load();
+
+  Intl.defaultLocale = 'es_ES';
+  initializeDateFormatting('es_ES', null).then((_) {
+    runApp(const ProviderScope(child: MyApp()));
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: lightTheme,
-      home: const StudentSchedulePage(),
+      home: const TestPage(),
     );
   }
 }
