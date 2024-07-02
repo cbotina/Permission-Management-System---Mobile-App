@@ -3,9 +3,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:pms_app/common/themes/light_theme.dart';
+import 'package:pms_app/pages/actions_test_page.dart';
 import 'package:pms_app/pages/student_schedule_page.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:pms_app/pages/test_page.dart';
+import 'package:pms_app/pages/data_test_page.dart';
 
 void main() async {
   await dotenv.load();

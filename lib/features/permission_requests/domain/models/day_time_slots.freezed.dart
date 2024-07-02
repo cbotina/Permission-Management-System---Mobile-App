@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DayTimeSlots {
-  String get date => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
   List<StudentScheduleView> get subjectGroupTimeSlots =>
       throw _privateConstructorUsedError;
 
@@ -31,7 +31,7 @@ abstract class $DayTimeSlotsCopyWith<$Res> {
           DayTimeSlots value, $Res Function(DayTimeSlots) then) =
       _$DayTimeSlotsCopyWithImpl<$Res, DayTimeSlots>;
   @useResult
-  $Res call({String date, List<StudentScheduleView> subjectGroupTimeSlots});
+  $Res call({DateTime date, List<StudentScheduleView> subjectGroupTimeSlots});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$DayTimeSlotsCopyWithImpl<$Res, $Val extends DayTimeSlots>
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       subjectGroupTimeSlots: null == subjectGroupTimeSlots
           ? _value.subjectGroupTimeSlots
           : subjectGroupTimeSlots // ignore: cast_nullable_to_non_nullable
@@ -71,7 +71,7 @@ abstract class _$$DayTimeSlotsImplCopyWith<$Res>
       __$$DayTimeSlotsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String date, List<StudentScheduleView> subjectGroupTimeSlots});
+  $Res call({DateTime date, List<StudentScheduleView> subjectGroupTimeSlots});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class __$$DayTimeSlotsImplCopyWithImpl<$Res>
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       subjectGroupTimeSlots: null == subjectGroupTimeSlots
           ? _value._subjectGroupTimeSlots
           : subjectGroupTimeSlots // ignore: cast_nullable_to_non_nullable
@@ -110,7 +110,7 @@ class _$DayTimeSlotsImpl implements _DayTimeSlots {
       : _subjectGroupTimeSlots = subjectGroupTimeSlots;
 
   @override
-  final String date;
+  final DateTime date;
   final List<StudentScheduleView> _subjectGroupTimeSlots;
   @override
   List<StudentScheduleView> get subjectGroupTimeSlots {
@@ -148,12 +148,12 @@ class _$DayTimeSlotsImpl implements _DayTimeSlots {
 
 abstract class _DayTimeSlots implements DayTimeSlots {
   const factory _DayTimeSlots(
-          {required final String date,
+          {required final DateTime date,
           required final List<StudentScheduleView> subjectGroupTimeSlots}) =
       _$DayTimeSlotsImpl;
 
   @override
-  String get date;
+  DateTime get date;
   @override
   List<StudentScheduleView> get subjectGroupTimeSlots;
   @override
