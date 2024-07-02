@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:pms_app/common/environment/environment.dart';
 import 'package:pms_app/common/models/pagination.dart';
 import 'package:pms_app/common/models/response_metadata.dart';
 import 'package:pms_app/common/utils/query_params_builder.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/abstract_repositories/unjustified_absences_repository.dart';
+import 'package:pms_app/features/student_unjustified_absences/data/dto/justify_absences_request_dto.dart';
 import 'package:pms_app/features/student_unjustified_absences/domain/models/unjustified_absence_details_view.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,5 +34,26 @@ class ImplUnjustifiedAbsencesRepository
     final meta = ResponseMetadata.fromJson(jsonResponse['meta']);
 
     return Pagination(items: items, meta: meta);
+  }
+
+  @override
+  Future<void> justifyStudentAbsences(
+    int studentId,
+    JustifyAbsencesRequestDto dto,
+  ) async {
+    final uri =
+        Uri.parse('${ENV.backendUrl}/students/$studentId/justify-absences');
+
+    final response = await http.post(
+      uri,
+      headers: {HttpHeaders.contentTypeHeader: 'application/json'},
+      body: jsonEncode(dto),
+    );
+
+    final jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
+
+    if (response.statusCode != 201) {
+      throw Exception(jsonResponse['message']);
+    }
   }
 }

@@ -1,6 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/features/permission_requests/data/abstract_repositories/day_time_slots_repository.dart';
+import 'package:pms_app/features/permission_requests/data/abstract_repositories/permission_request_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/impl_day_time_slots_repository.dart';
+import 'package:pms_app/features/permission_requests/data/repositories/impl_permission_request_repository.dart';
 import 'package:pms_app/features/student_permissions/data/abstract_repositories/permission_absences_repository.dart';
 import 'package:pms_app/features/student_permissions/data/abstract_repositories/permission_repository.dart';
 import 'package:pms_app/features/student_permissions/data/repositories/impl_permission_absences_repository.dart';
@@ -43,4 +45,9 @@ final usersRepositoryProvider = Provider<IUsersRepository>((ref) {
 final studentScheduleRepositoryProvider =
     Provider<IStudentScheduleRepository>((ref) {
   return ImplStudentScheduleRepository();
+});
+
+final permissionRequestRepositoryProvider =
+    Provider<IPermissionRequestRepository>((ref) {
+  return ImplPermissionRequestRepository();
 });

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/primary_button.dart';
 import 'package:pms_app/common/extensions/async_value_ui.dart';
-import 'package:pms_app/features/users/data/dto/change_password_dto.dart';
-import 'package:pms_app/features/users/presentation/controllers/change_password_controller.dart';
+import 'package:pms_app/features/student_unjustified_absences/data/dto/justify_absences_request_dto.dart';
+import 'package:pms_app/features/student_unjustified_absences/presentation/controllers/justify_absences_controller.dart';
 
 class ActionTestPage extends ConsumerWidget {
   const ActionTestPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<void> state = ref.watch(changePasswordControllerProvider);
+    final AsyncValue<void> state = ref.watch(justifyAbsencesControllerProvider);
 
-    ref.listen<AsyncValue<void>>(changePasswordControllerProvider,
+    ref.listen<AsyncValue<void>>(justifyAbsencesControllerProvider,
         (prev, state) {
       state.showSnackbarOnError(context);
       // state.popOnSuccess(
@@ -26,14 +26,16 @@ class ActionTestPage extends ConsumerWidget {
         isLoading: state.isLoading,
         enabled: !state.isLoading,
         onTap: () async {
-          final dto = ChangePasswordDto(
-            oldPassword: 'Student1234!',
-            newPassword: 'Hello1234!',
+          final dto = JustifyAbsencesRequestDto(
+            reason: "Justificacion valida",
+            evidenceUrl: "hola.jpg",
+            studentNote: "hey",
+            unjustifiedAbsencesIds: [4, 6],
           );
 
           await ref
-              .read(changePasswordControllerProvider.notifier)
-              .changePassword(2, dto);
+              .read(justifyAbsencesControllerProvider.notifier)
+              .justifyAbsences(1, dto);
         },
         minWidth: 80,
         child: const Text(
