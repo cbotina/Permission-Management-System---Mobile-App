@@ -46,6 +46,16 @@ Pagination<Permission> mockStudentPermissions = Pagination(
       studentNote: null,
       principalNote: null,
     ),
+    Permission(
+      id: 2,
+      status: PermissionStatus.leavePermission,
+      approvalDate: null,
+      requestDate: DateTime(2024, 1, 4),
+      reason: 'Sleepover',
+      evidenceUrl: 'photo.jpg',
+      studentNote: null,
+      principalNote: null,
+    ),
   ],
   meta: const ResponseMetadata(
     totalItems: 3,

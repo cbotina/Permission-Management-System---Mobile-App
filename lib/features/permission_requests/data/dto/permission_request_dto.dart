@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:pms_app/features/permission_requests/domain/models/selectable_absence_time_slot.dart';
+
 class PermissionRequestDto extends MapView<String, dynamic> {
   final String reason;
   final String evidenceUrl;
@@ -30,4 +32,12 @@ class AbsenceTimeSlot extends MapView<String, dynamic> {
           "subjectGroupTimeSlotId": subjectGroupTimeSlotId,
           "absenceDate": absenceDate.toString(),
         });
+
+  factory AbsenceTimeSlot.fromSelectableAbsenceTimeSlot(
+      SelectableAbsenceTimeSlot selectable) {
+    return AbsenceTimeSlot(
+      subjectGroupTimeSlotId: selectable.subjectGroupTimeSlotId,
+      absenceDate: selectable.date,
+    );
+  }
 }

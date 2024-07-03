@@ -3,39 +3,45 @@ import 'package:pms_app/features/permission_requests/data/abstract_repositories/
 import 'package:pms_app/features/permission_requests/data/abstract_repositories/permission_request_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/impl_day_time_slots_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/impl_permission_request_repository.dart';
+import 'package:pms_app/features/permission_requests/data/repositories/mock_day_time_slots_repository.dart';
 import 'package:pms_app/features/student_permissions/data/abstract_repositories/permission_absences_repository.dart';
 import 'package:pms_app/features/student_permissions/data/abstract_repositories/permission_repository.dart';
 import 'package:pms_app/features/student_permissions/data/repositories/impl_permission_absences_repository.dart';
 import 'package:pms_app/features/student_permissions/data/repositories/impl_permissions_repository.dart';
+import 'package:pms_app/features/student_permissions/data/repositories/mock_permission_absences_repository.dart';
+import 'package:pms_app/features/student_permissions/data/repositories/mock_permissions_repository.dart';
 import 'package:pms_app/features/student_profile/data/abstract_repositories/students_repository.dart';
 import 'package:pms_app/features/student_profile/data/repositories/impl_students_repository.dart';
+import 'package:pms_app/features/student_profile/data/repositories/mock_students_repository.dart';
 import 'package:pms_app/features/student_schedule/data/abstract_repositories/student_schedule_repository.dart';
 import 'package:pms_app/features/student_schedule/data/repositories/impl_student_schedule_repository.dart';
+import 'package:pms_app/features/student_schedule/data/repositories/mock_student_schedule_repository.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/abstract_repositories/unjustified_absences_repository.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/repositories/impl_unjustified_absences_repository.dart';
+import 'package:pms_app/features/student_unjustified_absences/data/repositories/mock_unjustified_absences_repository.dart';
 import 'package:pms_app/features/users/data/abstract_repositories/users_repository.dart';
 import 'package:pms_app/features/users/data/repositories/impl_users_repository.dart';
 
 final permissionsRepositoryProvider = Provider<IPermissionsRepository>((ref) {
-  return ImplPermissionsRepository();
+  return MockPermissionsRepository();
 });
 
 final permissionAbsencesRepositoryProvider =
     Provider<IPermissionAbsencesRepository>((ref) {
-  return ImplPermissionAbsencesRepository();
+  return MockPermissionAbsencesRepository();
 });
 
 final dayTimeSlotsRepositoryProvider = Provider<IDayTimeSlotsRepository>((ref) {
-  return ImplDayTimeSlotsRepository();
+  return MockDayTimeSlotsRepository();
 });
 
 final unjustifiedAbsencesRepositoryProvider =
     Provider<IUnjustifiedAbsencesRepository>((ref) {
-  return ImplUnjustifiedAbsencesRepository();
+  return MockUnjustifiedAbsencesRepository();
 });
 
 final studentsRepositoryProvider = Provider<IStudentsRepository>((ref) {
-  return ImplStudentsRepository();
+  return MockStudentsRepository();
 });
 
 final usersRepositoryProvider = Provider<IUsersRepository>((ref) {
@@ -44,7 +50,7 @@ final usersRepositoryProvider = Provider<IUsersRepository>((ref) {
 
 final studentScheduleRepositoryProvider =
     Provider<IStudentScheduleRepository>((ref) {
-  return ImplStudentScheduleRepository();
+  return MockStudentScheduleRepository();
 });
 
 final permissionRequestRepositoryProvider =

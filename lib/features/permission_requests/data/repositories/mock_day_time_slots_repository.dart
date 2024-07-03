@@ -64,7 +64,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
     ],
   ),
   DayTimeSlots(
-    date: DateTime(2024, 1, 1),
+    date: DateTime(2024, 1, 2),
     subjectGroupTimeSlots: [
       const StudentScheduleView(
         subjectGroupTimeSlotId: 7,
@@ -139,7 +139,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
     ],
   ),
   DayTimeSlots(
-    date: DateTime(2024, 1, 1),
+    date: DateTime(2024, 1, 3),
     subjectGroupTimeSlots: [
       const StudentScheduleView(
         subjectGroupTimeSlotId: 23,

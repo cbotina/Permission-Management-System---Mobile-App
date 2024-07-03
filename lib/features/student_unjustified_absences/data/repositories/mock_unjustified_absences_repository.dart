@@ -11,7 +11,7 @@ class MockUnjustifiedAbsencesRepository
   @override
   Future<Pagination<UnjustifiedAbsenceDetailsView>>
       getStudentUnjustifiedAbsences(int periodId, int studentId, int page) {
-    throw UnimplementedError();
+    return Future.value(mockUnjustifiedAbsences);
   }
 
   @override
