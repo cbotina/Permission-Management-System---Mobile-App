@@ -19,7 +19,34 @@ class MockUnjustifiedAbsencesRepository
       int studentId, JustifyAbsencesRequestDto dto) {
     return Future.value(null);
   }
+
+  @override
+  Future<List<UnjustifiedAbsenceDetailsView>> getJustifiableAbsences(
+      int periodId, int studentId) {
+    return Future.value(mockJustifiableAbsences);
+  }
 }
+
+List<UnjustifiedAbsenceDetailsView> mockJustifiableAbsences = [
+  UnjustifiedAbsenceDetailsView(
+    absenceId: 4,
+    absenceDate: DateTime(2024, 1, 1),
+    startTime: const TimeOfDay(hour: 7, minute: 0),
+    endTime: const TimeOfDay(hour: 7, minute: 0),
+    teacherNote: 'Justifiable',
+    subjectName: "Matematicas",
+    permissionStatus: PermissionStatus.pending,
+  ),
+  UnjustifiedAbsenceDetailsView(
+    absenceId: 3,
+    absenceDate: DateTime(2024, 1, 1),
+    startTime: const TimeOfDay(hour: 7, minute: 0),
+    endTime: const TimeOfDay(hour: 7, minute: 0),
+    teacherNote: 'Justifiable',
+    subjectName: "Matematicas",
+    permissionStatus: PermissionStatus.pending,
+  ),
+];
 
 Pagination<UnjustifiedAbsenceDetailsView> mockUnjustifiedAbsences = Pagination(
   items: [

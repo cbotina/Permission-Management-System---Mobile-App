@@ -56,4 +56,21 @@ class ImplUnjustifiedAbsencesRepository
       throw Exception(jsonResponse['message']);
     }
   }
+
+  @override
+  Future<List<UnjustifiedAbsenceDetailsView>> getJustifiableAbsences(
+    int periodId,
+    int studentId,
+  ) async {
+    final uri = Uri.parse(
+        "${ENV.backendUrl}/periods/$periodId/students/$studentId/absences/justificable");
+
+    final response = await http.get(uri);
+
+    final jsonResponse = jsonDecode(response.body) as List<dynamic>;
+
+    return jsonResponse
+        .map((e) => UnjustifiedAbsenceDetailsView.fromJson(e))
+        .toList();
+  }
 }

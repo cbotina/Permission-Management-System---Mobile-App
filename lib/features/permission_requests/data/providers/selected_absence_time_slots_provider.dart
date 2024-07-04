@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:pms_app/features/permission_requests/data/dto/permission_request_dto.dart';
 import 'package:pms_app/features/permission_requests/domain/models/selectable_absence_time_slot.dart';
 
 class SelectedAbsenceTimeSlotsProvider extends ChangeNotifier {

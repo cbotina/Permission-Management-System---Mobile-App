@@ -10,6 +10,13 @@ abstract class IUnjustifiedAbsencesRepository {
     int page,
   );
 
+  Future<List<UnjustifiedAbsenceDetailsView>> getJustifiableAbsences(
+    int periodId,
+    int studentId,
+  );
+
   Future<void> justifyStudentAbsences(
-      int studentId, JustifyAbsencesRequestDto dto);
+    int studentId,
+    JustifyAbsencesRequestDto dto,
+  );
 }
