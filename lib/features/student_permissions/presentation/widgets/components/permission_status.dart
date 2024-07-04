@@ -3,9 +3,12 @@ import 'package:pms_app/features/student_permissions/domain/models/permission.da
 
 class PermissionStatusWidget extends StatelessWidget {
   final PermissionStatus status;
+  final bool verbose;
+
   const PermissionStatusWidget({
     super.key,
     required this.status,
+    this.verbose = false,
   });
 
   Color getColor(PermissionStatus status) {
@@ -22,15 +25,16 @@ class PermissionStatusWidget extends StatelessWidget {
   }
 
   String getText(PermissionStatus status) {
+    String text = verbose ? 'Permiso' : "";
     switch (status) {
       case PermissionStatus.pending:
-        return 'Pendiente';
+        return '$text Pendiente';
       case PermissionStatus.leavePermission:
-        return 'Salida';
+        return '$text Salida';
       case PermissionStatus.approved:
-        return 'Aprobado';
+        return '$text Aprobado';
       case PermissionStatus.rejected:
-        return 'Rechazado';
+        return '$text Rechazado';
     }
   }
 

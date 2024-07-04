@@ -16,7 +16,7 @@ class ImplPermissionAbsencesRepository
     int permissionId,
     int page,
   ) async {
-    final queryParams = buildQueryParams({'page': '$page'});
+    final queryParams = buildQueryParams({'page': '$page', 'limit': '20'});
 
     final uri = Uri.parse(
         "${ENV.backendUrl}/students/$studentId/permissions/$permissionId/absences$queryParams");

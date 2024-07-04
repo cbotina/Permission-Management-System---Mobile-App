@@ -4,12 +4,15 @@ import 'package:pms_app/common/providers/repository_providers.dart';
 import 'package:pms_app/features/student_permissions/domain/models/permission_absence_view.dart';
 
 final permissionAbsencesProvider =
-    FutureProvider.family<Pagination<PermissionAbsenceView>, int>(
-        (ref, page) async {
-  const studentId = 1;
-  const permissionId = 1;
+    FutureProvider.family<List<PermissionAbsenceView>, int>(
+  (ref, permissionId) async {
+    const studentId = 1;
 
-  return await ref
-      .watch(permissionAbsencesRepositoryProvider)
-      .getStudentPermissionAbsences(studentId, permissionId, page);
-});
+    return await ref
+        .watch(permissionAbsencesRepositoryProvider)
+        .getStudentPermissionAbsences(studentId, permissionId, 1)
+        .then(
+          (value) => value.items,
+        );
+  },
+);

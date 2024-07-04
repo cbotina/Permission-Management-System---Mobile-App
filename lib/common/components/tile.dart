@@ -5,12 +5,16 @@ class Tile extends StatelessWidget {
   final IconData iconData;
   final String title;
   final String subtitle;
+  final bool reversed;
+  final Widget? trailingIcon;
   const Tile({
     super.key,
     this.onTap,
     required this.iconData,
     required this.title,
     required this.subtitle,
+    this.reversed = false,
+    this.trailingIcon,
   });
 
   @override
@@ -35,23 +39,35 @@ class Tile extends StatelessWidget {
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      subtitle,
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                  ],
+                  children: reversed
+                      ? [
+                          Text(
+                            subtitle,
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                          Text(
+                            title,
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                        ]
+                      : [
+                          Text(
+                            title,
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          Text(
+                            subtitle,
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
                 ),
               ),
               const SizedBox(width: 20),
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: Theme.of(context).colorScheme.surfaceTint,
-              )
+              trailingIcon ??
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    color: Theme.of(context).colorScheme.surfaceTint,
+                  )
             ],
           ),
         ),

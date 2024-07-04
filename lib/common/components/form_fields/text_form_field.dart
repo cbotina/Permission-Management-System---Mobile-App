@@ -15,6 +15,7 @@ class OutlinedTextFormField extends StatelessWidget {
   final Icon? prefixIcon;
   final Widget? suffixIcon;
   final bool? autocorrect;
+  final bool? readOnly;
 
   const OutlinedTextFormField({
     super.key,
@@ -31,6 +32,7 @@ class OutlinedTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.autocorrect,
+    this.readOnly,
   });
 
   @override
@@ -46,6 +48,7 @@ class OutlinedTextFormField extends StatelessWidget {
       autocorrect: autocorrect ?? false,
       autofillHints: hint.isNotEmpty ? [hint] : null,
       showCursor: true,
+      readOnly: readOnly ?? false,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
