@@ -9,15 +9,10 @@ import 'package:pms_app/features/student_schedule/domain/models/time_slot.dart';
 
 class ImplTimeSlotsRepository implements ITimeSlotsRepository {
   @override
-  Future<Pagination<TimeSlot>> getPaginatedTimeSlots(
+  Future<Pagination<TimeSlot>> getPeriodTimeSlots(
     int periodId,
-    int page,
-    String searchQuery,
   ) async {
-    final queryParams = buildQueryParams({
-      'page': '$page',
-      'search': searchQuery,
-    });
+    final queryParams = buildQueryParams({'page': '1', 'limit': '16'});
 
     final uri = Uri.parse(
         '${ENV.backendUrl}/periods/$periodId/time-slots/$queryParams');

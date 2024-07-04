@@ -24,6 +24,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         startTime: TimeOfDay(hour: 7, minute: 0),
         endTime: TimeOfDay(hour: 7, minute: 54),
         subjectName: 'Etica y Valores',
+        teacherName: "John Doe",
         day: 'MON',
       ),
       const StudentScheduleView(
@@ -31,6 +32,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         startTime: TimeOfDay(hour: 7, minute: 55),
         endTime: TimeOfDay(hour: 8, minute: 49),
         subjectName: 'Etica y Valores',
+        teacherName: "John Doe",
         day: 'MON',
       ),
       const StudentScheduleView(
@@ -38,6 +40,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         startTime: TimeOfDay(hour: 8, minute: 50),
         endTime: TimeOfDay(hour: 9, minute: 44),
         subjectName: 'Dinamización de Semestre',
+        teacherName: "John Doe",
         day: 'MON',
       ),
       const StudentScheduleView(
@@ -45,6 +48,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         startTime: TimeOfDay(hour: 9, minute: 45),
         endTime: TimeOfDay(hour: 10, minute: 39),
         subjectName: 'Educación Matemática I',
+        teacherName: "John Doe",
         day: 'MON',
       ),
       const StudentScheduleView(
@@ -52,6 +56,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         startTime: TimeOfDay(hour: 11, minute: 10),
         endTime: TimeOfDay(hour: 12, minute: 4),
         subjectName: 'Psicología del Desarrollo I',
+        teacherName: "John Doe",
         day: 'MON',
       ),
       const StudentScheduleView(
@@ -59,6 +64,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         startTime: TimeOfDay(hour: 12, minute: 5),
         endTime: TimeOfDay(hour: 12, minute: 54),
         subjectName: 'Psicología del Desarrollo I',
+        teacherName: "John Doe",
         day: 'MON',
       ),
     ],
@@ -71,6 +77,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         startTime: TimeOfDay(hour: 7, minute: 0),
         endTime: TimeOfDay(hour: 7, minute: 54),
         subjectName: 'Práctica Pedagógica Inv - Observación Pedagógica',
+        teacherName: "John Doe",
         day: 'TUE',
       ),
       const StudentScheduleView(
@@ -78,6 +85,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         startTime: TimeOfDay(hour: 7, minute: 55),
         endTime: TimeOfDay(hour: 8, minute: 49),
         subjectName: 'Práctica Pedagógica Inv - Observación Pedagógica',
+        teacherName: "John Doe",
         day: 'TUE',
       ),
       const StudentScheduleView(
@@ -86,6 +94,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 9, minute: 44),
         subjectName: 'Práctica Pedagógica Inv - Observación Pedagógica',
         day: 'TUE',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 10,
@@ -93,12 +102,14 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 10, minute: 39),
         subjectName: 'Práctica Pedagógica Inv - Observación Pedagógica',
         day: 'TUE',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 11,
         startTime: TimeOfDay(hour: 11, minute: 10),
         endTime: TimeOfDay(hour: 12, minute: 4),
         subjectName: 'Socialización I',
+        teacherName: "John Doe",
         day: 'TUE',
       ),
       const StudentScheduleView(
@@ -107,6 +118,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 12, minute: 54),
         subjectName: 'Socialización I',
         day: 'TUE',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 13,
@@ -114,6 +126,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 15, minute: 44),
         subjectName: 'Educación Matemática I',
         day: 'TUE',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 14,
@@ -121,6 +134,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 16, minute: 39),
         subjectName: 'Educación Matemática I',
         day: 'TUE',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 15,
@@ -128,6 +142,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 17, minute: 34),
         subjectName: 'Educación Preescolar I',
         day: 'TUE',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 16,
@@ -135,6 +150,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 18, minute: 29),
         subjectName: 'Educación Preescolar I',
         day: 'TUE',
+        teacherName: "John Doe",
       ),
     ],
   ),
@@ -147,6 +163,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 7, minute: 54),
         subjectName: 'Comunicación y Lenguaje I',
         day: 'THU',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 24,
@@ -154,6 +171,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 8, minute: 49),
         subjectName: 'Comunicación y Lenguaje I',
         day: 'THU',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 25,
@@ -161,6 +179,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 9, minute: 44),
         subjectName: 'Didáctica General',
         day: 'THU',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 26,
@@ -168,6 +187,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 10, minute: 39),
         subjectName: 'Didáctica General',
         day: 'THU',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 27,
@@ -175,6 +195,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 12, minute: 4),
         subjectName: 'Educación Física',
         day: 'THU',
+        teacherName: "John Doe",
       ),
       const StudentScheduleView(
         subjectGroupTimeSlotId: 28,
@@ -182,6 +203,7 @@ List<DayTimeSlots> mockDayTimeSlots = [
         endTime: TimeOfDay(hour: 12, minute: 54),
         subjectName: 'Educación Física',
         day: 'THU',
+        teacherName: "John Doe",
       ),
     ],
   ),

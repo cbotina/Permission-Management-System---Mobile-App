@@ -11,6 +11,7 @@ class StudentScheduleView with _$StudentScheduleView {
     required TimeOfDay endTime,
     required String subjectName,
     required String day,
+    required String teacherName,
   }) = _StudentScheduleView;
 
   factory StudentScheduleView.fromJson(Map<String, dynamic> json) {
@@ -20,6 +21,7 @@ class StudentScheduleView with _$StudentScheduleView {
       endTime: json['endTime'].toString().toDayTime(),
       subjectName: json['subjectName'],
       day: json['day'],
+      teacherName: json['teacherName'],
     );
   }
 }

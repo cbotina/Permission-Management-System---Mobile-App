@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/features/permission_requests/data/abstract_repositories/day_time_slots_repository.dart';
 import 'package:pms_app/features/permission_requests/data/abstract_repositories/permission_request_repository.dart';
+import 'package:pms_app/features/permission_requests/data/repositories/impl_day_time_slots_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/impl_permission_request_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/mock_day_time_slots_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/mock_permission_request_repository.dart';
@@ -11,7 +12,11 @@ import 'package:pms_app/features/student_permissions/data/repositories/mock_perm
 import 'package:pms_app/features/student_profile/data/abstract_repositories/students_repository.dart';
 import 'package:pms_app/features/student_profile/data/repositories/mock_students_repository.dart';
 import 'package:pms_app/features/student_schedule/data/abstract_repositories/student_schedule_repository.dart';
+import 'package:pms_app/features/student_schedule/data/abstract_repositories/time_slots_repository.dart';
+import 'package:pms_app/features/student_schedule/data/repositories/impl_student_schedule_repository.dart';
+import 'package:pms_app/features/student_schedule/data/repositories/impl_time_slots_repository.dart';
 import 'package:pms_app/features/student_schedule/data/repositories/mock_student_schedule_repository.dart';
+import 'package:pms_app/features/student_schedule/data/repositories/mock_time_slots_repository.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/abstract_repositories/unjustified_absences_repository.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/repositories/mock_unjustified_absences_repository.dart';
 import 'package:pms_app/features/users/data/abstract_repositories/users_repository.dart';
@@ -27,7 +32,7 @@ final permissionAbsencesRepositoryProvider =
 });
 
 final dayTimeSlotsRepositoryProvider = Provider<IDayTimeSlotsRepository>((ref) {
-  return MockDayTimeSlotsRepository();
+  return ImplDayTimeSlotsRepository();
 });
 
 final unjustifiedAbsencesRepositoryProvider =
@@ -45,10 +50,14 @@ final usersRepositoryProvider = Provider<IUsersRepository>((ref) {
 
 final studentScheduleRepositoryProvider =
     Provider<IStudentScheduleRepository>((ref) {
-  return MockStudentScheduleRepository();
+  return ImplStudentScheduleRepository();
 });
 
 final permissionRequestRepositoryProvider =
     Provider<IPermissionRequestRepository>((ref) {
   return MockPermissionRequestRepository();
+});
+
+final timeSlotsRepositoryProvider = Provider<ITimeSlotsRepository>((ref) {
+  return ImplTimeSlotsRepository();
 });

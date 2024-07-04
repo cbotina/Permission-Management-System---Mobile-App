@@ -6,10 +6,9 @@ import 'package:pms_app/features/student_schedule/domain/models/time_slot.dart';
 
 class MockTimeSlotsRepository implements ITimeSlotsRepository {
   @override
-  Future<Pagination<TimeSlot>> getPaginatedTimeSlots(
-      int periodId, int page, String searchQuery) async {
+  Future<Pagination<TimeSlot>> getPeriodTimeSlots(int periodId) async {
     return Pagination(
-      items: mockTimeSlots.sublist(0, 9),
+      items: mockTimeSlots,
       meta: const ResponseMetadata(
         totalItems: 10,
         itemCount: 10,

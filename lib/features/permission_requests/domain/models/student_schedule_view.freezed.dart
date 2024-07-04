@@ -21,6 +21,7 @@ mixin _$StudentScheduleView {
   TimeOfDay get endTime => throw _privateConstructorUsedError;
   String get subjectName => throw _privateConstructorUsedError;
   String get day => throw _privateConstructorUsedError;
+  String get teacherName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StudentScheduleViewCopyWith<StudentScheduleView> get copyWith =>
@@ -38,7 +39,8 @@ abstract class $StudentScheduleViewCopyWith<$Res> {
       TimeOfDay startTime,
       TimeOfDay endTime,
       String subjectName,
-      String day});
+      String day,
+      String teacherName});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$StudentScheduleViewCopyWithImpl<$Res, $Val extends StudentScheduleView>
     Object? endTime = null,
     Object? subjectName = null,
     Object? day = null,
+    Object? teacherName = null,
   }) {
     return _then(_value.copyWith(
       subjectGroupTimeSlotId: null == subjectGroupTimeSlotId
@@ -81,6 +84,10 @@ class _$StudentScheduleViewCopyWithImpl<$Res, $Val extends StudentScheduleView>
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
               as String,
+      teacherName: null == teacherName
+          ? _value.teacherName
+          : teacherName // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -98,7 +105,8 @@ abstract class _$$StudentScheduleViewImplCopyWith<$Res>
       TimeOfDay startTime,
       TimeOfDay endTime,
       String subjectName,
-      String day});
+      String day,
+      String teacherName});
 }
 
 /// @nodoc
@@ -117,6 +125,7 @@ class __$$StudentScheduleViewImplCopyWithImpl<$Res>
     Object? endTime = null,
     Object? subjectName = null,
     Object? day = null,
+    Object? teacherName = null,
   }) {
     return _then(_$StudentScheduleViewImpl(
       subjectGroupTimeSlotId: null == subjectGroupTimeSlotId
@@ -139,6 +148,10 @@ class __$$StudentScheduleViewImplCopyWithImpl<$Res>
           ? _value.day
           : day // ignore: cast_nullable_to_non_nullable
               as String,
+      teacherName: null == teacherName
+          ? _value.teacherName
+          : teacherName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -151,7 +164,8 @@ class _$StudentScheduleViewImpl implements _StudentScheduleView {
       required this.startTime,
       required this.endTime,
       required this.subjectName,
-      required this.day});
+      required this.day,
+      required this.teacherName});
 
   @override
   final int subjectGroupTimeSlotId;
@@ -163,10 +177,12 @@ class _$StudentScheduleViewImpl implements _StudentScheduleView {
   final String subjectName;
   @override
   final String day;
+  @override
+  final String teacherName;
 
   @override
   String toString() {
-    return 'StudentScheduleView(subjectGroupTimeSlotId: $subjectGroupTimeSlotId, startTime: $startTime, endTime: $endTime, subjectName: $subjectName, day: $day)';
+    return 'StudentScheduleView(subjectGroupTimeSlotId: $subjectGroupTimeSlotId, startTime: $startTime, endTime: $endTime, subjectName: $subjectName, day: $day, teacherName: $teacherName)';
   }
 
   @override
@@ -181,12 +197,14 @@ class _$StudentScheduleViewImpl implements _StudentScheduleView {
             (identical(other.endTime, endTime) || other.endTime == endTime) &&
             (identical(other.subjectName, subjectName) ||
                 other.subjectName == subjectName) &&
-            (identical(other.day, day) || other.day == day));
+            (identical(other.day, day) || other.day == day) &&
+            (identical(other.teacherName, teacherName) ||
+                other.teacherName == teacherName));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, subjectGroupTimeSlotId,
-      startTime, endTime, subjectName, day);
+      startTime, endTime, subjectName, day, teacherName);
 
   @JsonKey(ignore: true)
   @override
@@ -202,7 +220,8 @@ abstract class _StudentScheduleView implements StudentScheduleView {
       required final TimeOfDay startTime,
       required final TimeOfDay endTime,
       required final String subjectName,
-      required final String day}) = _$StudentScheduleViewImpl;
+      required final String day,
+      required final String teacherName}) = _$StudentScheduleViewImpl;
 
   @override
   int get subjectGroupTimeSlotId;
@@ -214,6 +233,8 @@ abstract class _StudentScheduleView implements StudentScheduleView {
   String get subjectName;
   @override
   String get day;
+  @override
+  String get teacherName;
   @override
   @JsonKey(ignore: true)
   _$$StudentScheduleViewImplCopyWith<_$StudentScheduleViewImpl> get copyWith =>

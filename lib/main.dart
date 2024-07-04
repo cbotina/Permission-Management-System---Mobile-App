@@ -5,9 +5,11 @@ import 'package:intl/intl.dart';
 import 'package:pms_app/common/themes/light_theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:pms_app/pages/justify_absences_page.dart';
+import 'package:pms_app/pages/login_page.dart';
 import 'package:pms_app/pages/permission_request_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pms_app/pages/student_permissions_page.dart';
+import 'package:pms_app/pages/student_schedule_page.dart';
 import 'package:pms_app/pages/student_unjustified_absences_page.dart';
 
 void main() async {
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       theme: lightTheme,
-      home: const JustifyAbsencesPage(),
+      home: const LoginPage(),
     );
   }
 }

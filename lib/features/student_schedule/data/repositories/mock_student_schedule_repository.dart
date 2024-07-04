@@ -16,6 +16,7 @@ List<StudentScheduleView> mockStudentSchedule = [
     startTime: TimeOfDay(hour: 7, minute: 0),
     endTime: TimeOfDay(hour: 7, minute: 50),
     subjectName: "Matematicas",
+    teacherName: "John Doe",
     day: "MON",
   ),
   const StudentScheduleView(
@@ -23,6 +24,7 @@ List<StudentScheduleView> mockStudentSchedule = [
     startTime: TimeOfDay(hour: 7, minute: 0),
     endTime: TimeOfDay(hour: 7, minute: 50),
     subjectName: "Matematicas",
+    teacherName: "John Doe",
     day: "MON",
   ),
   const StudentScheduleView(
@@ -30,6 +32,7 @@ List<StudentScheduleView> mockStudentSchedule = [
     startTime: TimeOfDay(hour: 7, minute: 0),
     endTime: TimeOfDay(hour: 7, minute: 50),
     subjectName: "Matematicas",
+    teacherName: "John Doe",
     day: "MON",
   ),
   const StudentScheduleView(
@@ -37,6 +40,7 @@ List<StudentScheduleView> mockStudentSchedule = [
     startTime: TimeOfDay(hour: 7, minute: 0),
     endTime: TimeOfDay(hour: 7, minute: 50),
     subjectName: "Matematicas",
+    teacherName: "John Doe",
     day: "MON",
   ),
   const StudentScheduleView(
@@ -44,6 +48,7 @@ List<StudentScheduleView> mockStudentSchedule = [
     startTime: TimeOfDay(hour: 7, minute: 0),
     endTime: TimeOfDay(hour: 7, minute: 50),
     subjectName: "Matematicas",
+    teacherName: "John Doe",
     day: "MON",
   ),
   const StudentScheduleView(
@@ -51,6 +56,7 @@ List<StudentScheduleView> mockStudentSchedule = [
     startTime: TimeOfDay(hour: 7, minute: 0),
     endTime: TimeOfDay(hour: 7, minute: 50),
     subjectName: "Matematicas",
+    teacherName: "John Doe",
     day: "MON",
   ),
 ];
