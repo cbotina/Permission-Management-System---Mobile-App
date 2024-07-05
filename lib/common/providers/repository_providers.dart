@@ -1,10 +1,14 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:pms_app/features/auth/data/abstract_repositories/auth_repository.dart';
+import 'package:pms_app/features/auth/data/repositories/impl_auth_repository.dart';
 import 'package:pms_app/features/permission_requests/data/abstract_repositories/day_time_slots_repository.dart';
 import 'package:pms_app/features/permission_requests/data/abstract_repositories/permission_request_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/impl_day_time_slots_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/impl_permission_request_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/mock_day_time_slots_repository.dart';
 import 'package:pms_app/features/permission_requests/data/repositories/mock_permission_request_repository.dart';
+import 'package:pms_app/features/session/data/abstract_repositories/periods_repository.dart';
+import 'package:pms_app/features/session/data/repositories/impl_periods_repository.dart';
 import 'package:pms_app/features/student_permissions/data/abstract_repositories/permission_absences_repository.dart';
 import 'package:pms_app/features/student_permissions/data/abstract_repositories/permission_repository.dart';
 import 'package:pms_app/features/student_permissions/data/repositories/mock_permission_absences_repository.dart';
@@ -60,4 +64,12 @@ final permissionRequestRepositoryProvider =
 
 final timeSlotsRepositoryProvider = Provider<ITimeSlotsRepository>((ref) {
   return ImplTimeSlotsRepository();
+});
+
+final periodsRepositoryProvider = Provider<IPeriodsRepository>((ref) {
+  return ImplPeriodsRepository();
+});
+
+final authRepositoryProvider = Provider<IAuthRepository>((ref) {
+  return ImplAuthRepository();
 });

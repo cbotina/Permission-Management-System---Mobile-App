@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/tile.dart';
+import 'package:pms_app/common/extensions/async_value_ui.dart';
+import 'package:pms_app/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pms_app/features/permission_requests/presentation/widgets/permission_request_tile.dart';
 
 class MainMenuPage extends StatelessWidget {
@@ -40,9 +43,34 @@ class MainMenuPage extends StatelessWidget {
               subtitle: "Cambiar foto, cambiar contraseña",
               onTap: () {},
             ),
+            const LogoutTileButton(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class LogoutTileButton extends ConsumerWidget {
+  const LogoutTileButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final AsyncValue<void> state = ref.watch(authControllerProvider);
+
+    ref.listen<AsyncValue<void>>(authControllerProvider, (prev, state) {
+      state.showSnackbarOnError(context);
+    });
+
+    return Tile(
+      iconData: Icons.logout,
+      title: "Cerrar sesion",
+      subtitle: "Hasta pronto!",
+      onTap: () async {
+        await ref.read(authControllerProvider.notifier).logout();
+      },
     );
   }
 }

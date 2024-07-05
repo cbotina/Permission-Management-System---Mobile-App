@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pms_app/common/components/tile.dart';
+import 'package:pms_app/pages/permission_request_page.dart';
 
 class PermissionRequestTile extends StatelessWidget {
   const PermissionRequestTile({super.key});
@@ -10,7 +11,13 @@ class PermissionRequestTile extends StatelessWidget {
       iconData: Icons.edit_calendar_outlined,
       title: "Solicitar Permiso",
       subtitle: "Justifica tus faltas con anticipación",
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) {
+            return const PermisssionRequestPage();
+          },
+        ));
+      },
     );
   }
 }

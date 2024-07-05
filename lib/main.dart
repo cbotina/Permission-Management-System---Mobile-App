@@ -4,19 +4,23 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:pms_app/common/themes/light_theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:pms_app/features/auth/data/providers/is_logged_in.dart';
+import 'package:pms_app/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pms_app/features/student_permissions/domain/models/permission.dart';
 import 'package:pms_app/pages/justify_absences_page.dart';
 import 'package:pms_app/pages/login_page.dart';
+import 'package:pms_app/pages/main_menu_page.dart';
 import 'package:pms_app/pages/permission_details_page.dart';
 import 'package:pms_app/pages/permission_request_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:pms_app/pages/profile_page.dart';
-import 'package:pms_app/pages/student_permissions_page.dart';
-import 'package:pms_app/pages/student_schedule_page.dart';
-import 'package:pms_app/pages/student_unjustified_absences_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   await dotenv.load();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   Intl.defaultLocale = 'es_ES';
   initializeDateFormatting('es_ES', null).then((_) {
@@ -35,7 +39,12 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       theme: lightTheme,
-      home: const ProfilePage(),
+      home: Consumer(
+        builder: (context, ref, child) {
+          final isLoggedIn = ref.watch(isLoggedInProvider);
+          return isLoggedIn ? const MainMenuPage() : const LoginPage();
+        },
+      ),
     );
   }
 }
