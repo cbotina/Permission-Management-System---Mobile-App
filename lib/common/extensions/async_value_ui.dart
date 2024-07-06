@@ -39,8 +39,6 @@ extension AsyncValueUI on AsyncValue {
 
   void popOnSuccess(AsyncValue? prev, String message, BuildContext context) {
     if (!isLoading && !hasError && prev != null) {
-      Navigator.of(context).pop();
-
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -50,6 +48,41 @@ extension AsyncValueUI on AsyncValue {
           duration: const Duration(seconds: 2),
         ),
       );
+    }
+  }
+
+  void dialogOnSuccess(AsyncValue? prev, String message, BuildContext context) {
+    if (!isLoading && !hasError && prev != null) {
+      Navigator.of(context).pop();
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Text(message),
+            actions: [
+              PrimaryButton(
+                onTap: Navigator.of(context).pop,
+                child: const Text(
+                  "Entendido",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              )
+            ],
+          );
+        },
+      );
+
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   SnackBar(
+      //     content: Text(
+      //       message,
+      //       style: const TextStyle(color: Colors.white),
+      //     ),
+      //     duration: const Duration(seconds: 2),
+      //   ),
+      // );
     }
   }
 }

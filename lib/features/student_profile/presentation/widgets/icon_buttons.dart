@@ -39,7 +39,7 @@ class ChangePasswordForm extends ConsumerStatefulWidget {
 class _ChangePasswordFormState extends ConsumerState<ChangePasswordForm> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

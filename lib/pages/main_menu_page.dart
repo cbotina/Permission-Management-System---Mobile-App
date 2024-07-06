@@ -4,6 +4,10 @@ import 'package:pms_app/common/components/tile.dart';
 import 'package:pms_app/common/extensions/async_value_ui.dart';
 import 'package:pms_app/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pms_app/features/permission_requests/presentation/widgets/permission_request_tile.dart';
+import 'package:pms_app/pages/profile_page.dart';
+import 'package:pms_app/pages/student_permissions_page.dart';
+import 'package:pms_app/pages/student_schedule_page.dart';
+import 'package:pms_app/pages/student_unjustified_absences_page.dart';
 
 class MainMenuPage extends StatelessWidget {
   const MainMenuPage({super.key});
@@ -23,25 +27,49 @@ class MainMenuPage extends StatelessWidget {
               iconData: Icons.list_rounded,
               title: "Mis Permisos",
               subtitle: "Consulta el estado de tus permisos",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const StudentPermissionsPage();
+                  },
+                ));
+              },
             ),
             Tile(
               iconData: Icons.timer_sharp,
               title: "Horario de Clases",
               subtitle: "Consulta tu horario de clases 2024-A",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const StudentSchedulePage();
+                  },
+                ));
+              },
             ),
             Tile(
               iconData: Icons.cancel_outlined,
               title: "Registro de Faltas",
               subtitle: "Revisa si tienes faltas por justificar",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const StudentUnjustifiedAbsencesPage();
+                  },
+                ));
+              },
             ),
             Tile(
               iconData: Icons.person_outlined,
               title: "Mi Perfil",
               subtitle: "Cambiar foto, cambiar contraseña",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) {
+                    return const ProfilePage();
+                  },
+                ));
+              },
             ),
             const LogoutTileButton(),
           ],
@@ -58,7 +86,7 @@ class LogoutTileButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<void> state = ref.watch(authControllerProvider);
+    ref.watch(authControllerProvider);
 
     ref.listen<AsyncValue<void>>(authControllerProvider, (prev, state) {
       state.showSnackbarOnError(context);

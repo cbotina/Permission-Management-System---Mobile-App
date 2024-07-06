@@ -10,6 +10,7 @@ class AuthController extends AsyncNotifier<AuthState> {
 
   @override
   FutureOr<AuthState> build() {
+    // return AuthState(AuthResult.success, 1, 78, 1, UserRole.student);
     return AuthState(AuthResult.logout, null, null, null, null);
   }
 

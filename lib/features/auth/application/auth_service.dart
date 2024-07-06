@@ -6,7 +6,6 @@ import 'package:pms_app/features/auth/data/dto/login_dto.dart';
 import 'package:pms_app/features/auth/domain/enums/user_role.dart';
 import 'package:pms_app/features/auth/presentation/state/auth_state.dart';
 import 'package:pms_app/features/session/data/abstract_repositories/periods_repository.dart';
-import 'package:pms_app/features/users/data/abstract_repositories/users_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {

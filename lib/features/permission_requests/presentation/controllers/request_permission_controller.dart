@@ -1,22 +1,20 @@
 import 'dart:async';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:pms_app/common/providers/repository_providers.dart';
-import 'package:pms_app/features/permission_requests/data/abstract_repositories/permission_request_repository.dart';
-import 'package:pms_app/features/permission_requests/data/dto/permission_request_dto.dart';
+import 'package:pms_app/features/permission_requests/application/permission_requests_service.dart';
+import 'package:pms_app/features/permission_requests/data/dto/permission_request_info.dart';
 
 class RequestPermissionController extends AsyncNotifier<void> {
-  late final IPermissionRequestRepository _repository =
-      ref.watch(permissionRequestRepositoryProvider);
+  late final PermissionRequestsService _service =
+      ref.watch(permissionRequestServiceProvider);
 
   @override
   FutureOr<void> build() {}
 
-  Future<void> requestPermission(
-      int studentId, PermissionRequestDto dto) async {
+  Future<void> requestPermission(PermissionRequestInfo info) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(
-      () => _repository.createPermissionRequest(studentId, dto),
+      () => _service.createPermissionRequest(info),
     );
   }
 }

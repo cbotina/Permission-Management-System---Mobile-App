@@ -8,22 +8,28 @@ import 'package:pms_app/common/components/table/table_label.dart';
 import 'package:pms_app/features/student_permissions/data/providers/student_period_permissions_provider.dart';
 import 'package:pms_app/features/student_permissions/domain/models/permission.dart';
 import 'package:pms_app/features/student_permissions/presentation/widgets/components/permission_status.dart';
+import 'package:pms_app/pages/permission_details_page.dart';
 
-class StudentPermissionsPage extends StatelessWidget {
+class StudentPermissionsPage extends ConsumerWidget {
   const StudentPermissionsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mis Permisos"),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(15),
-        children: const [
-          SizedBox(height: 15),
-          StudentPermissionsTable(),
-        ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          ref.invalidate(studentPermissionsProvider);
+        },
+        child: ListView(
+          padding: const EdgeInsets.all(15),
+          children: const [
+            SizedBox(height: 15),
+            StudentPermissionsTable(),
+          ],
+        ),
       ),
     );
   }
@@ -79,6 +85,7 @@ class _StudentPermissionsTableState
       },
       error: (error, stackTrace) => Text(error.toString()),
       loading: () => const CircularProgressIndicator(),
+      skipLoadingOnRefresh: false,
     );
   }
 }
@@ -87,6 +94,7 @@ List<DataColumn> permissionColumns = [
   const DataColumn(label: TableLabel('Fecha solicitud')),
   const DataColumn(label: TableLabel('Motivo')),
   const DataColumn(label: TableLabel('Estado')),
+  const DataColumn(label: TableLabel('Detalles')),
 ];
 
 List<DataRow> getPermissionRows(
@@ -99,6 +107,19 @@ List<DataRow> getPermissionRows(
                 MainAxisAlignment.center),
             tableCell(Text(e.reason), MainAxisAlignment.center),
             tableCell(PermissionStatusWidget(status: e.status),
+                MainAxisAlignment.center),
+            tableCell(
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) {
+                          return PermissionDetailsPage(
+                            permission: e,
+                          );
+                        },
+                      ));
+                    },
+                    child: const Text("Ver detalles")),
                 MainAxisAlignment.center),
           ],
         ),

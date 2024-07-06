@@ -1,11 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:pms_app/common/components/buttons/primary_button.dart';
-import 'package:pms_app/features/permission_requests/domain/models/student_schedule_view.dart';
 import 'package:pms_app/features/student_schedule/data/providers/time_slots_with_schedule_provider.dart';
-import 'package:pms_app/features/student_schedule/domain/models/time_slot.dart';
 import 'package:pms_app/features/student_schedule/domain/models/time_slot_with_student_schedule.dart';
 
 const days = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
