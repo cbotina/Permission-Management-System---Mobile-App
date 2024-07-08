@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/primary_button.dart';
@@ -10,7 +8,6 @@ extension AsyncValueUI on AsyncValue {
       showDialog(
         context: context,
         builder: (context) {
-          log(stackTrace.toString());
           return AlertDialog(
             title: const Text(
               "Ha ocurrido un error",
@@ -37,17 +34,9 @@ extension AsyncValueUI on AsyncValue {
     }
   }
 
-  void popOnSuccess(AsyncValue? prev, String message, BuildContext context) {
+  void popOnSuccess(AsyncValue? prev, BuildContext context) {
     if (!isLoading && !hasError && prev != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            message,
-            style: const TextStyle(color: Colors.white),
-          ),
-          duration: const Duration(seconds: 2),
-        ),
-      );
+      Navigator.of(context).pop();
     }
   }
 

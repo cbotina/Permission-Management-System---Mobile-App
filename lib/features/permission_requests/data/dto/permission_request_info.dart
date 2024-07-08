@@ -7,7 +7,6 @@ class PermissionRequestInfo {
   final Uint8List fileBytes;
   final String fileExtension;
   final String? studentNote;
-
   final List<AbsenceTimeSlot> absenceTimeSlots;
 
   const PermissionRequestInfo({

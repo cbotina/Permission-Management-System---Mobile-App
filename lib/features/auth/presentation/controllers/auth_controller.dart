@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/features/auth/application/auth_service.dart';
 import 'package:pms_app/features/auth/data/dto/login_dto.dart';
+import 'package:pms_app/features/auth/domain/enums/user_role.dart';
 import 'package:pms_app/features/auth/presentation/state/auth_state.dart';
 
 class AuthController extends AsyncNotifier<AuthState> {

@@ -6,46 +6,65 @@ import 'package:pms_app/common/components/table/pagination_widget.dart';
 import 'package:pms_app/common/components/table/table.dart';
 import 'package:pms_app/common/components/table/table_cell.dart';
 import 'package:pms_app/common/components/table/table_label.dart';
+import 'package:pms_app/features/student_unjustified_absences/data/providers/justifiable_absences_provider.dart';
+import 'package:pms_app/features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/providers/unjustified_absences_provider.dart';
 import 'package:pms_app/features/student_unjustified_absences/domain/models/unjustified_absence_details_view.dart';
+import 'package:pms_app/pages/justify_absences_page.dart';
 
-class StudentUnjustifiedAbsencesPage extends StatelessWidget {
+class StudentUnjustifiedAbsencesPage extends ConsumerWidget {
   const StudentUnjustifiedAbsencesPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mis Faltas"),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(15),
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                "Lista de Faltas",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              PrimaryButton(
-                minWidth: 150,
-                child: Text(
-                  "Justificar Faltas",
+      body: RefreshIndicator(
+        onRefresh: () async {
+          ref.invalidate(studentUnjustifiedAbsencesProvider);
+          ref.invalidate(justifiableAbsencesProvider);
+          ref.read(selectedJustifiableAbsencesIdsProvider.notifier).reset();
+        },
+        child: ListView(
+          padding: const EdgeInsets.all(15),
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Lista de Faltas",
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onPrimary,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                onTap: () {},
-              ),
-            ],
-          ),
-          const SizedBox(height: 15),
-          const UnjustifiedAbsencesTable(),
-        ],
+                PrimaryButton(
+                  minWidth: 150,
+                  child: Text(
+                    "Justificar Faltas",
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          ref.invalidate(justifiableAbsencesProvider);
+                          return const JustifyAbsencesPage();
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 15),
+            const UnjustifiedAbsencesTable(),
+          ],
+        ),
       ),
     );
   }
@@ -103,6 +122,7 @@ class _UnjustifiedAbsencesTableState
       },
       error: (error, stackTrace) => Text(error.toString()),
       loading: () => const CircularProgressIndicator(),
+      skipLoadingOnRefresh: false,
     );
   }
 }

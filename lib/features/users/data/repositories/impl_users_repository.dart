@@ -20,7 +20,13 @@ class ImplUsersRepository implements IUsersRepository {
     final jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
 
     if (response.statusCode != 200) {
-      throw Exception(jsonResponse['message']);
+      switch (response.statusCode) {
+        case 400:
+          throw Exception(
+              'La nueva contraseña no es segura. Debe tener al menos 8 caracteres, mayúsculas, minúsculas y símbolos especiales (#, !, @, etc)');
+        case 401:
+          throw Exception('La contraseña actual no es correcta');
+      }
     }
   }
 }

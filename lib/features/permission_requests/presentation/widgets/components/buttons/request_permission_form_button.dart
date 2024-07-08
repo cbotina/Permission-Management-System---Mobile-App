@@ -9,6 +9,9 @@ import 'package:pms_app/features/permission_requests/data/dto/permission_request
 import 'package:pms_app/features/permission_requests/data/providers/selected_absence_time_slots_provider.dart';
 import 'package:pms_app/features/permission_requests/presentation/controllers/request_permission_controller.dart';
 import 'package:pms_app/features/student_permissions/data/providers/student_period_permissions_provider.dart';
+import 'package:pms_app/features/student_unjustified_absences/data/providers/justifiable_absences_provider.dart';
+import 'package:pms_app/features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
+import 'package:pms_app/features/student_unjustified_absences/data/providers/unjustified_absences_provider.dart';
 
 class RequestPermissionFormButton extends ConsumerWidget {
   const RequestPermissionFormButton({
@@ -67,8 +70,8 @@ class RequestPermissionFormButton extends ConsumerWidget {
                   content: const Text("Debe agregar una evidencia al permiso"),
                   actions: [
                     PrimaryButton(
-                      isLoading: state.isLoading,
-                      enabled: !state.isLoading,
+                      // isLoading: state.isLoading,
+                      // enabled: !state.isLoading,
                       onTap: Navigator.of(context).pop,
                       child: const Text(
                         "Entendido",
@@ -106,6 +109,8 @@ class RequestPermissionFormButton extends ConsumerWidget {
               .requestPermission(info);
 
           ref.invalidate(studentPermissionsProvider);
+          ref.invalidate(studentUnjustifiedAbsencesProvider);
+          ref.invalidate(justifiableAbsencesProvider);
         }
       },
     );

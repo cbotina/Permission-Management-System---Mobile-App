@@ -1,22 +1,19 @@
 import 'dart:async';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:pms_app/common/providers/repository_providers.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/abstract_repositories/unjustified_absences_repository.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/dto/justify_absences_request_dto.dart';
+import 'package:pms_app/features/student_unjustified_absences/application/justify_absences_service.dart';
+import 'package:pms_app/features/student_unjustified_absences/data/dto/justify_absences_info.dart';
 
 class JustifyAbsencesController extends AsyncNotifier<void> {
-  late final IUnjustifiedAbsencesRepository _repository =
-      ref.watch(unjustifiedAbsencesRepositoryProvider);
+  late final JustifyAbsencesService _service =
+      ref.watch(justifyAbsencesServiceProvider);
 
   @override
   FutureOr<void> build() {}
 
-  Future<void> justifyAbsences(
-      int studentId, JustifyAbsencesRequestDto dto) async {
+  Future<void> justifyAbsences(JustifyAbsencesInfo info) async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(
-        () => _repository.justifyStudentAbsences(studentId, dto));
+    state = await AsyncValue.guard(() => _service.justifyAbsences(info));
   }
 }
 
