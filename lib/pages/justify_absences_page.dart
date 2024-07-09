@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:pms_app/common/components/form_fields/text_form_field.dart';
 import 'package:pms_app/common/extensions/async_value_ui.dart';
 import 'package:pms_app/features/permission_requests/presentation/widgets/validators/other_reason_validator.dart';
 import 'package:pms_app/features/permission_requests/presentation/widgets/validators/reason_validator.dart';
+import 'package:pms_app/features/session/data/providers/entity_id_provider.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/dto/justify_absences_info.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/providers/justifiable_absences_provider.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
@@ -210,7 +212,7 @@ class JustifyAbsencesFormButton extends ConsumerWidget {
 
     ref.listen<AsyncValue<void>>(justifyAbsencesControllerProvider,
         (prev, state) {
-      state.showSnackbarOnError(context);
+      state.dialogOnError(context);
       state.dialogOnSuccess(
         prev,
         'El permiso ha sido creado correctamente',
@@ -268,9 +270,13 @@ class JustifyAbsencesFormButton extends ConsumerWidget {
             absencesIds: selectedAbsencesIds,
           );
 
+          final studentId = ref.watch(entityIdProvider);
+          log(studentId.toString());
+
           await ref
               .read(justifyAbsencesControllerProvider.notifier)
-              .justifyAbsences(info);
+              .justifyAbsences(studentId, info);
+
           ref.invalidate(studentUnjustifiedAbsencesProvider);
           ref.read(selectedJustifiableAbsencesIdsProvider.notifier).reset();
         }

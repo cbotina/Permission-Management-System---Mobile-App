@@ -109,6 +109,7 @@ class _PermisssionRequestPageState
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(15),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 15),
               EnumDropdownButtonFormField(

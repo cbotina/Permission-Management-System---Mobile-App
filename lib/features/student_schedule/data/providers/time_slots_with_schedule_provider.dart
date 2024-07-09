@@ -34,7 +34,10 @@ final timeSlotsWithScheduleProvider =
             timeSlot: e, studentSchedule: studentScheduleView);
       }).toList();
     },
-    error: (error, stackTrace) => [],
+    error: (error, stackTrace) {
+      print(error);
+      return [];
+    },
     loading: () => [],
   );
 });

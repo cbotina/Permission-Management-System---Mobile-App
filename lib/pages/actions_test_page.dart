@@ -13,7 +13,7 @@ class ActionTestPage extends ConsumerWidget {
 
     ref.listen<AsyncValue<void>>(justifyAbsencesControllerProvider,
         (prev, state) {
-      state.showSnackbarOnError(context);
+      state.dialogOnError(context);
       // state.popOnSuccess(
       //   prev,
       //   "Operacion exitosa",

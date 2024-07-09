@@ -85,7 +85,7 @@ class _UnjustifiedAbsencesTableState
   int page = 1;
   @override
   Widget build(BuildContext context) {
-    final absences = ref.watch(studentUnjustifiedAbsencesProvider(1));
+    final absences = ref.watch(studentUnjustifiedAbsencesProvider(page));
 
     return absences.when(
       data: (data) {

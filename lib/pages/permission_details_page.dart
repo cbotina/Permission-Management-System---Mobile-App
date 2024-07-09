@@ -58,9 +58,11 @@ class PermissionDetailsPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 15),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: PermissionAbsencesTable(permission: permission),
+          Center(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: PermissionAbsencesTable(permission: permission),
+            ),
           ),
           const SizedBox(height: 15),
           Row(

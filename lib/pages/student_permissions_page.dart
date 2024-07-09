@@ -83,7 +83,9 @@ class _StudentPermissionsTableState
           ],
         );
       },
-      error: (error, stackTrace) => Text(error.toString()),
+      error: (error, stackTrace) {
+        return Center(child: Text(error.toString()));
+      },
       loading: () => const CircularProgressIndicator(),
       skipLoadingOnRefresh: false,
     );

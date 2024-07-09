@@ -7,8 +7,8 @@ import 'package:pms_app/features/student_permissions/domain/models/permission.da
 
 final studentPermissionsProvider =
     FutureProvider.family<Pagination<Permission>, int>((ref, page) async {
-  final studentId = ref.watch(entityIdProvider);
   final periodId = ref.watch(activePeriodIdProvider);
+  final studentId = ref.watch(entityIdProvider);
 
   return await ref
       .watch(permissionsRepositoryProvider)

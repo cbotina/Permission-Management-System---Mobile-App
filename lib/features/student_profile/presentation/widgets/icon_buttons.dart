@@ -141,7 +141,6 @@ class _ChangePasswordFormState extends ConsumerState<ChangePasswordForm> {
 class ChangePasswordButton extends ConsumerWidget {
   final TextEditingController _oldPasswordController;
   final TextEditingController _newPasswordController;
-  final TextEditingController _confirmNewPasswordController;
   final GlobalKey<FormState> _formKey;
 
   const ChangePasswordButton(
@@ -152,7 +151,6 @@ class ChangePasswordButton extends ConsumerWidget {
       required GlobalKey<FormState> formKey})
       : _oldPasswordController = oldPasswordController,
         _newPasswordController = newPasswordController,
-        _confirmNewPasswordController = confirmNewPasswordController,
         _formKey = formKey;
 
   @override
@@ -161,7 +159,7 @@ class ChangePasswordButton extends ConsumerWidget {
 
     ref.listen<AsyncValue<void>>(changePasswordControllerProvider,
         (prev, state) {
-      state.showSnackbarOnError(context);
+      state.dialogOnError(context);
       state.dialogOnSuccess(
         prev,
         'Su contraseña ha sido cambiada con éxito',

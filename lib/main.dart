@@ -9,7 +9,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:pms_app/features/auth/data/providers/is_logged_in.dart';
 import 'package:pms_app/pages/login_page.dart';
 import 'package:pms_app/pages/main_menu_page.dart';
-import 'package:pms_app/pages/profile_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -35,7 +34,6 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       theme: lightTheme,
-      // home: const ProfilePage(),
       home: Consumer(
         builder: (context, ref, child) {
           final isLoggedIn = ref.watch(isLoggedInProvider);

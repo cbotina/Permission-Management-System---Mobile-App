@@ -89,7 +89,7 @@ class LogoutTileButton extends ConsumerWidget {
     ref.watch(authControllerProvider);
 
     ref.listen<AsyncValue<void>>(authControllerProvider, (prev, state) {
-      state.showSnackbarOnError(context);
+      state.dialogOnError(context);
     });
 
     return Tile(

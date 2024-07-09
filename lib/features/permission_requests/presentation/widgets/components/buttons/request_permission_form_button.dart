@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -8,9 +9,9 @@ import 'package:pms_app/features/permission_requests/data/dto/permission_request
 import 'package:pms_app/features/permission_requests/data/dto/permission_request_info.dart';
 import 'package:pms_app/features/permission_requests/data/providers/selected_absence_time_slots_provider.dart';
 import 'package:pms_app/features/permission_requests/presentation/controllers/request_permission_controller.dart';
+import 'package:pms_app/features/session/data/providers/entity_id_provider.dart';
 import 'package:pms_app/features/student_permissions/data/providers/student_period_permissions_provider.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/providers/justifiable_absences_provider.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
 import 'package:pms_app/features/student_unjustified_absences/data/providers/unjustified_absences_provider.dart';
 
 class RequestPermissionFormButton extends ConsumerWidget {
@@ -40,7 +41,7 @@ class RequestPermissionFormButton extends ConsumerWidget {
 
     ref.listen<AsyncValue<void>>(requestPermissionControllerProvider,
         (prev, state) {
-      state.showSnackbarOnError(context);
+      state.dialogOnError(context);
       state.dialogOnSuccess(
         prev,
         'El permiso ha sido creado correctamente',
@@ -104,9 +105,13 @@ class RequestPermissionFormButton extends ConsumerWidget {
             absenceTimeSlots: absenceTimeSlots,
           );
 
+          final studentId = ref.watch(entityIdProvider);
+
+          log(studentId.toString());
+
           await ref
               .read(requestPermissionControllerProvider.notifier)
-              .requestPermission(info);
+              .requestPermission(studentId, info);
 
           ref.invalidate(studentPermissionsProvider);
           ref.invalidate(studentUnjustifiedAbsencesProvider);

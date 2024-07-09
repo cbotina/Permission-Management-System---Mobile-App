@@ -17,43 +17,49 @@ class ProfilePage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text("Mi Perfil"),
       ),
-      body: student.when(
-        data: (data) {
-          return ListView(
-            children: [
-              Tile(
-                iconData: Icons.person_outline_rounded,
-                title: '${data.firstName} ${data.lastName}',
-                subtitle: 'Nombre',
-                reversed: true,
-                trailingIcon: const SizedBox(),
-              ),
-              Tile(
-                iconData: Icons.numbers,
-                title: data.cc,
-                subtitle: 'Identificación',
-                reversed: true,
-                trailingIcon: const SizedBox(),
-              ),
-              Tile(
-                iconData: Icons.mail_outline_rounded,
-                title: data.email,
-                subtitle: 'Correo institucional',
-                reversed: true,
-                trailingIcon: const SizedBox(),
-              ),
-              const Tile(
-                iconData: Icons.password_rounded,
-                title: '********',
-                subtitle: 'Cambiar contraseña',
-                reversed: true,
-                trailingIcon: ChangePasswordIconButton(),
-              ),
-            ],
-          );
+      body: RefreshIndicator(
+        onRefresh: () async {
+          return ref.invalidate(studentInfoProvider);
         },
-        error: (error, stackTrace) => Text(error.toString()),
-        loading: () => const Center(child: CircularProgressIndicator()),
+        child: student.when(
+          data: (data) {
+            return ListView(
+              children: [
+                Tile(
+                  iconData: Icons.person_outline_rounded,
+                  title: '${data.firstName} ${data.lastName}',
+                  subtitle: 'Nombre',
+                  reversed: true,
+                  trailingIcon: const SizedBox(),
+                ),
+                Tile(
+                  iconData: Icons.numbers,
+                  title: data.cc,
+                  subtitle: 'Identificación',
+                  reversed: true,
+                  trailingIcon: const SizedBox(),
+                ),
+                Tile(
+                  iconData: Icons.mail_outline_rounded,
+                  title: data.email,
+                  subtitle: 'Correo institucional',
+                  reversed: true,
+                  trailingIcon: const SizedBox(),
+                ),
+                const Tile(
+                  iconData: Icons.password_rounded,
+                  title: '********',
+                  subtitle: 'Cambiar contraseña',
+                  reversed: true,
+                  trailingIcon: ChangePasswordIconButton(),
+                ),
+              ],
+            );
+          },
+          error: (error, stackTrace) => Text(error.toString()),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          skipLoadingOnRefresh: false,
+        ),
       ),
     );
   }

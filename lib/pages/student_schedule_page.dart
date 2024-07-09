@@ -24,69 +24,77 @@ class _StudentSchedulePageState extends ConsumerState<StudentSchedulePage> {
       appBar: AppBar(
         title: const Text("Mi Horario"),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(10),
-        children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                SegmentedButton(
-                  style: SegmentedButton.styleFrom(
-                    selectedBackgroundColor:
-                        Theme.of(context).colorScheme.primary,
-                    selectedForegroundColor:
-                        Theme.of(context).colorScheme.onPrimary,
-                    foregroundColor: Theme.of(context).colorScheme.primary,
-                    // backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          ref.invalidate(timeSlotsWithScheduleProvider);
+        },
+        child: ListView(
+          padding: const EdgeInsets.all(10),
+          children: [
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SegmentedButton(
+                    style: SegmentedButton.styleFrom(
+                      selectedBackgroundColor:
+                          Theme.of(context).colorScheme.primary,
+                      selectedForegroundColor:
+                          Theme.of(context).colorScheme.onPrimary,
+                      foregroundColor: Theme.of(context).colorScheme.primary,
+                      // backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7),
+                      ),
                     ),
+                    segments: [
+                      ButtonSegment(
+                        value: days[0],
+                        label: const Text("LUNES"),
+                      ),
+                      ButtonSegment(
+                        value: days[1],
+                        label: const Text("MARTES"),
+                      ),
+                      ButtonSegment(
+                        value: days[2],
+                        label: const Text("MIERCOLES"),
+                      ),
+                      ButtonSegment(
+                        value: days[3],
+                        label: const Text("JUEVES"),
+                      ),
+                      ButtonSegment(
+                        value: days[4],
+                        label: const Text("VIERNES"),
+                      ),
+                    ],
+                    selected: {selectedDay},
+                    onSelectionChanged: (newSelection) {
+                      setState(() {
+                        selectedDay = newSelection.first;
+                      });
+                    },
                   ),
-                  segments: [
-                    ButtonSegment(
-                      value: days[0],
-                      label: const Text("LUNES"),
-                    ),
-                    ButtonSegment(
-                      value: days[1],
-                      label: const Text("MARTES"),
-                    ),
-                    ButtonSegment(
-                      value: days[2],
-                      label: const Text("MIERCOLES"),
-                    ),
-                    ButtonSegment(
-                      value: days[3],
-                      label: const Text("JUEVES"),
-                    ),
-                    ButtonSegment(
-                      value: days[4],
-                      label: const Text("VIERNES"),
-                    ),
-                  ],
-                  selected: {selectedDay},
-                  onSelectionChanged: (newSelection) {
-                    setState(() {
-                      selectedDay = newSelection.first;
-                    });
-                  },
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          schedule.when(
-            data: (data) {
-              return Column(
-                children: data.map((e) {
-                  return StudentScheduleTimeSlotWidget(data: e);
-                }).toList(),
-              );
-            },
-            error: (error, stackTrace) => Text(error.toString()),
-            loading: () => const CircularProgressIndicator(),
-          ),
-        ],
+            schedule.when(
+              data: (data) {
+                return Column(
+                  children: data.map((e) {
+                    return StudentScheduleTimeSlotWidget(
+                      data: e,
+                    );
+                  }).toList(),
+                );
+              },
+              error: (error, stackTrace) => Text(error.toString()),
+              loading: () => const CircularProgressIndicator(),
+              skipLoadingOnRefresh: false,
+            ),
+          ],
+        ),
       ),
     );
   }

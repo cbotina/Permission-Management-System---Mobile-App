@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/primary_button.dart';
 
 extension AsyncValueUI on AsyncValue {
-  void showSnackbarOnError(BuildContext context) {
+  void dialogOnError(BuildContext context) {
     if (!isLoading && hasError) {
       showDialog(
         context: context,
@@ -28,9 +28,6 @@ extension AsyncValueUI on AsyncValue {
           );
         },
       );
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   SnackBar(content: Text(error.toString())),
-      // );
     }
   }
 

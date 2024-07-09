@@ -24,7 +24,7 @@ class LoginFormButton extends ConsumerWidget {
     final AsyncValue<void> state = ref.watch(authControllerProvider);
 
     ref.listen<AsyncValue<void>>(authControllerProvider, (prev, state) {
-      state.showSnackbarOnError(context);
+      state.dialogOnError(context);
     });
 
     return PrimaryButton(

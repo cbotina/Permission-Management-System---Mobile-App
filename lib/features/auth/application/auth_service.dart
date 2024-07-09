@@ -33,7 +33,10 @@ class AuthService {
     return AuthState(AuthResult.success, userId, entityId, period!.id, role);
   }
 
-  Future<AuthState> logout() {
+  Future<AuthState> logout() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('token');
+
     return Future.value(AuthState(AuthResult.logout, null, null, null, null));
   }
 }
