@@ -3,7 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/tile.dart';
 import 'package:pms_app/common/extensions/async_value_ui.dart';
 import 'package:pms_app/features/auth/presentation/controllers/auth_controller.dart';
-import 'package:pms_app/features/permission_requests/presentation/widgets/permission_request_tile.dart';
+import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/permission_request_tile.dart';
 import 'package:pms_app/pages/profile_page.dart';
 import 'package:pms_app/pages/student_permissions_page.dart';
 import 'package:pms_app/pages/student_schedule_page.dart';

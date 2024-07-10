@@ -1,4 +1,4 @@
-import 'package:pms_app/features/student_permissions/domain/models/permission.dart';
+import 'package:pms_app/features/student_features/student_permissions/domain/models/permission.dart';
 
 extension ToPermissionStatus on String {
   PermissionStatus toPermissionStatus() {

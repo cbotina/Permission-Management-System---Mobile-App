@@ -13,12 +13,10 @@ class ChangePasswordController extends AsyncNotifier<void> {
   late final IUsersRepository _usersRepository =
       ref.watch(usersRepositoryProvider);
 
-  late final int _userId = ref.watch(entityIdProvider);
-
-  Future<void> changePassword(ChangePasswordDto dto) async {
+  Future<void> changePassword(int userId, ChangePasswordDto dto) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(
-        () => _usersRepository.changePasword(_userId, dto));
+        () => _usersRepository.changePasword(userId, dto));
   }
 }
 

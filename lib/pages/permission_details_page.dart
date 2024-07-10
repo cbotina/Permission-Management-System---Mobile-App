@@ -6,10 +6,10 @@ import 'package:pms_app/common/components/form_fields/text_form_field.dart';
 import 'package:pms_app/common/components/table/table.dart';
 import 'package:pms_app/common/components/table/table_cell.dart';
 import 'package:pms_app/common/components/table/table_label.dart';
-import 'package:pms_app/features/student_permissions/data/providers/permission_absences_repository_provider.dart';
-import 'package:pms_app/features/student_permissions/domain/models/permission.dart';
-import 'package:pms_app/features/student_permissions/domain/models/permission_absence_view.dart';
-import 'package:pms_app/features/student_permissions/presentation/widgets/components/permission_status.dart';
+import 'package:pms_app/features/student_features/student_permissions/data/providers/permission_absences_repository_provider.dart';
+import 'package:pms_app/features/student_features/student_permissions/domain/models/permission.dart';
+import 'package:pms_app/features/student_features/student_permissions/domain/models/permission_absence_view.dart';
+import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/permission_status.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PermissionDetailsPage extends StatelessWidget {

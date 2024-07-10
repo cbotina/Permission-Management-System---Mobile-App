@@ -6,10 +6,10 @@ import 'package:pms_app/common/components/table/pagination_widget.dart';
 import 'package:pms_app/common/components/table/table.dart';
 import 'package:pms_app/common/components/table/table_cell.dart';
 import 'package:pms_app/common/components/table/table_label.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/providers/justifiable_absences_provider.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/providers/unjustified_absences_provider.dart';
-import 'package:pms_app/features/student_unjustified_absences/domain/models/unjustified_absence_details_view.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/justifiable_absences_provider.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/unjustified_absences_provider.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/domain/models/unjustified_absence_details_view.dart';
 import 'package:pms_app/pages/justify_absences_page.dart';
 
 class StudentUnjustifiedAbsencesPage extends ConsumerWidget {

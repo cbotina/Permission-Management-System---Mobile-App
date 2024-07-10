@@ -13,7 +13,7 @@ extension AsyncValueUI on AsyncValue {
               "Ha ocurrido un error",
               textAlign: TextAlign.center,
             ),
-            content: Text(error.toString().substring(10)),
+            content: Text(error.toString()),
             actions: [
               PrimaryButton(
                 onTap: Navigator.of(context).pop,

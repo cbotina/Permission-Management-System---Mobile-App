@@ -8,16 +8,16 @@ import 'package:pms_app/common/components/buttons/secondary_button.dart';
 import 'package:pms_app/common/components/form_fields/dropdown_button_form_field.dart';
 import 'package:pms_app/common/components/form_fields/text_form_field.dart';
 import 'package:pms_app/common/extensions/async_value_ui.dart';
-import 'package:pms_app/features/permission_requests/presentation/widgets/validators/other_reason_validator.dart';
-import 'package:pms_app/features/permission_requests/presentation/widgets/validators/reason_validator.dart';
+import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/validators/other_reason_validator.dart';
+import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/validators/reason_validator.dart';
 import 'package:pms_app/features/session/data/providers/entity_id_provider.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/dto/justify_absences_info.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/providers/justifiable_absences_provider.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
-import 'package:pms_app/features/student_unjustified_absences/data/providers/unjustified_absences_provider.dart';
-import 'package:pms_app/features/student_unjustified_absences/domain/models/unjustified_absence_details_view.dart';
-import 'package:pms_app/features/student_unjustified_absences/presentation/controllers/justify_absences_controller.dart';
-import 'package:pms_app/features/student_unjustified_absences/presentation/widgets/components/justifiable_absence_check_box.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/data/dto/justify_absences_info.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/justifiable_absences_provider.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/unjustified_absences_provider.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/domain/models/unjustified_absence_details_view.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/presentation/controllers/justify_absences_controller.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/presentation/widgets/components/justifiable_absence_check_box.dart';
 
 class JustifyAbsencesPage extends ConsumerStatefulWidget {
   const JustifyAbsencesPage({super.key});

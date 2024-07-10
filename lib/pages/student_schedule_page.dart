@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:pms_app/features/student_schedule/data/providers/time_slots_with_schedule_provider.dart';
-import 'package:pms_app/features/student_schedule/domain/models/time_slot_with_student_schedule.dart';
+import 'package:pms_app/features/student_features/student_schedule/data/providers/time_slots_with_schedule_provider.dart';
+import 'package:pms_app/features/student_features/student_schedule/domain/models/time_slot_with_student_schedule.dart';
 
 const days = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
 

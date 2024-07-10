@@ -6,13 +6,13 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/secondary_button.dart';
 import 'package:pms_app/common/components/form_fields/dropdown_button_form_field.dart';
 import 'package:pms_app/common/components/form_fields/text_form_field.dart';
-import 'package:pms_app/features/permission_requests/data/dto/schedule_range_dates_dto.dart';
-import 'package:pms_app/features/permission_requests/data/providers/day_time_slots_provider.dart';
-import 'package:pms_app/features/permission_requests/presentation/widgets/components/buttons/request_permission_form_button.dart';
-import 'package:pms_app/features/permission_requests/presentation/widgets/components/buttons/select_time_slots_button.dart';
-import 'package:pms_app/features/permission_requests/presentation/widgets/components/date_range_time_slots.dart';
-import 'package:pms_app/features/permission_requests/presentation/widgets/validators/other_reason_validator.dart';
-import 'package:pms_app/features/permission_requests/presentation/widgets/validators/reason_validator.dart';
+import 'package:pms_app/features/student_features/permission_requests/data/dto/schedule_range_dates_dto.dart';
+import 'package:pms_app/features/student_features/permission_requests/data/providers/day_time_slots_provider.dart';
+import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/components/buttons/request_permission_form_button.dart';
+import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/components/buttons/select_time_slots_button.dart';
+import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/components/date_range_time_slots.dart';
+import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/validators/other_reason_validator.dart';
+import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/validators/reason_validator.dart';
 
 class PermisssionRequestPage extends ConsumerStatefulWidget {
   const PermisssionRequestPage({super.key});
