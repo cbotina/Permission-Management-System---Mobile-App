@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:pms_app/common/extensions/capitalize.dart';
+import 'package:pms_app/common/providers/today_provider.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/data/providers/memory_daily_report_data.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/data/providers/subject_group_students_provider.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/data/providers/subject_group_students_with_permissions_provider.dart';
@@ -13,12 +14,12 @@ import 'package:pms_app/features/teacher_features/teacher_schedule/domain/models
 import 'package:pms_app/features/teacher_features/teacher_schedule/domain/models/teacher_schedule_view.dart';
 import 'package:pms_app/pages/teacher_pages/make_daily_report_page.dart';
 
-class DailyReportsPage extends StatelessWidget {
-  DailyReportsPage({super.key});
-  final today = DateTime(2024, 7, 24);
+class DailyReportsPage extends ConsumerWidget {
+  const DailyReportsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final today = ref.watch(todayProvider);
     log('building');
     return Scaffold(
       appBar: AppBar(

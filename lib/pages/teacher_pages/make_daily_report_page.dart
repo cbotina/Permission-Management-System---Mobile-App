@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/primary_button.dart';
+import 'package:pms_app/common/extensions/async_value_ui.dart';
 import 'package:pms_app/common/extensions/capitalize.dart';
+import 'package:pms_app/common/providers/today_provider.dart';
 import 'package:pms_app/features/student_features/student_permissions/domain/models/permission.dart';
 import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/permission_status.dart';
 import 'package:pms_app/features/student_features/student_profile/domain/models/student.dart';
+import 'package:pms_app/features/teacher_features/daily_reports/data/dto/create_daily_report_dto.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/data/providers/memory_daily_report_data.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/data/providers/subject_group_students_with_permissions_provider.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/domain/models/student_with_permission.dart';
+import 'package:pms_app/features/teacher_features/daily_reports/presentation/controllers/create_daily_report_controller.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/presentation/widgets/components/add_comment_to_absence_form.dart';
 import 'package:pms_app/features/teacher_features/teacher_schedule/domain/models/schedule_with_daily_report.dart';
 
@@ -46,26 +50,86 @@ class MakeDailyReportPage extends ConsumerWidget {
         padding: const EdgeInsets.all(8.0),
         children: [
           const Text("Lista de Estudiantes"),
-          Column(children: [
-            Consumer(
-              builder: (context, ref, child) {
-                final memoryData =
-                    ref.watch(memoryDailyReportDataProvider).data;
+          const SizedBox(height: 15),
+          Consumer(
+            builder: (context, ref, child) {
+              final memoryData = ref.watch(memoryDailyReportDataProvider).data;
 
-                return SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(children: [
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
                     for (int i = 0; i < memoryData.length; i++)
                       StudentWidget(
                         index: i,
                       ),
-                  ]),
-                );
-              },
-            ),
-          ]),
+                  ],
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 15),
+          CreateDailyReportFormButton(
+            subjectGroupTimeSlotId: data.scheduleView.subjectGroupTimeSlotId,
+          ),
         ],
       ),
+    );
+  }
+}
+
+class CreateDailyReportFormButton extends ConsumerWidget {
+  final int subjectGroupTimeSlotId;
+  const CreateDailyReportFormButton({
+    super.key,
+    required this.subjectGroupTimeSlotId,
+  });
+
+  @override
+  Widget build(BuildContext context, ref) {
+    final AsyncValue<void> state =
+        ref.watch(createDailyReportControllerProvider);
+
+    ref.listen<AsyncValue<void>>(createDailyReportControllerProvider,
+        (prev, state) {
+      state.dialogOnError(context);
+      state.dialogOnSuccess(
+        prev,
+        'Reporte enviado con exito',
+        context,
+      );
+    });
+
+    return PrimaryButton(
+      child: const Text(
+        "Enviar reporte de asistencia",
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
+      onTap: () {
+        final result = ref.watch(memoryDailyReportDataProvider).data;
+        final today = ref.watch(todayProvider);
+
+        final dto = CreateDailyReportDto(
+          reportDate: today,
+          isSubmitted: true,
+          subjectGroupTimeSlotId: subjectGroupTimeSlotId,
+          studentsAbsences: result.where((e) => e.absent ?? false).map((j) {
+            final studentId = j.data.student.studentId;
+            final comment = j.comment;
+
+            return StudentAbsence(
+              studentId: studentId,
+              teacherComment: comment,
+            );
+          }).toList(),
+        );
+
+        ref
+            .read(createDailyReportControllerProvider.notifier)
+            .createDailyReport(dto);
+      },
     );
   }
 }
@@ -89,7 +153,8 @@ class _StudentWidgetState extends ConsumerState<StudentWidget> {
   Widget build(BuildContext context) {
     final data = ref.watch(memoryDailyReportDataProvider).data[widget.index];
 
-    Color getBackgroundColor(bool? absent) {
+    Color getBackgroundColor(bool? absent, bool hasPermission) {
+      if (hasPermission) return const Color.fromARGB(255, 255, 252, 236);
       if (absent == null) return Colors.white;
       if (absent == true) return const Color.fromARGB(255, 255, 148, 184);
       if (absent == false) return const Color.fromARGB(255, 167, 255, 234);
@@ -103,7 +168,7 @@ class _StudentWidgetState extends ConsumerState<StudentWidget> {
         margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: getBackgroundColor(data.absent),
+          color: getBackgroundColor(data.absent, data.data.permission != null),
           boxShadow: const [
             BoxShadow(
               color: Color.fromARGB(14, 0, 0, 0),
@@ -156,11 +221,10 @@ class _StudentWidgetState extends ConsumerState<StudentWidget> {
                 children: [
                   SetAbsentButton(
                     onTap: () {
+                      ref
+                          .read(memoryDailyReportDataProvider.notifier)
+                          .setAbsent(true, widget.index);
                       setState(() {
-                        ref
-                            .read(memoryDailyReportDataProvider.notifier)
-                            .setAbsent(true, widget.index);
-
                         absent = data.absent;
                       });
                     },
@@ -189,11 +253,10 @@ class _StudentWidgetState extends ConsumerState<StudentWidget> {
                   ),
                   SetPresentButton(
                     onTap: () {
+                      ref
+                          .read(memoryDailyReportDataProvider.notifier)
+                          .setAbsent(false, widget.index);
                       setState(() {
-                        ref
-                            .read(memoryDailyReportDataProvider.notifier)
-                            .setAbsent(false, widget.index);
-
                         absent = data.absent;
                       });
                     },
