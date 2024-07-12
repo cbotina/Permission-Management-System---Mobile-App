@@ -5,7 +5,6 @@ import 'package:pms_app/features/auth/application/auth_service.dart';
 import 'package:pms_app/features/auth/data/dto/login_dto.dart';
 import 'package:pms_app/features/auth/data/providers/valid_token_provider.dart';
 import 'package:pms_app/features/auth/presentation/state/auth_state.dart';
-import 'package:pms_app/features/session/data/providers/entity_id_provider.dart';
 import 'package:pms_app/features/student_features/student_profile/data/providers/student_info_provider.dart';
 
 class AuthController extends AsyncNotifier<AuthState> {

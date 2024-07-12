@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/environment/environment.dart';
 import 'package:pms_app/common/errors/session_expired_error.dart';
-import 'package:pms_app/common/models/pagination.dart';
 import 'package:pms_app/common/utils/query_params_builder.dart';
 import 'package:pms_app/features/auth/presentation/controllers/auth_controller.dart';
 import 'package:pms_app/features/teacher_features/teacher_schedule/data/abstract_repositories/teacher_schedule_repository.dart';
@@ -30,6 +30,7 @@ class ImplTeacherScheduleRepository implements ITeacherScheduleRepository {
     final uri = Uri.parse(
         "${ENV.backendUrl}/periods/$periodId/teachers/$teacherId/schedule$queryParams");
 
+    log(uri.toString());
     final response = await http.get(
       uri,
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
@@ -37,7 +38,8 @@ class ImplTeacherScheduleRepository implements ITeacherScheduleRepository {
 
     final jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
 
-    if (jsonResponse['message'] == 'Unauthorized') {
+    if (jsonResponse['message'] ?? "" == 'Unauthorized') {
+      print("errorsito");
       await ref.read(authControllerProvider.notifier).logout();
       throw SessionExpiredError('Sesión expirada. Vuelva a Iniciar Sesión');
     }

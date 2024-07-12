@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/primary_button.dart';
 import 'package:pms_app/common/extensions/async_value_ui.dart';
-import 'package:pms_app/features/student_features/student_unjustified_absences/presentation/controllers/justify_absences_controller.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/data/dto/create_daily_report_dto.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/presentation/controllers/create_daily_report_controller.dart';
 
@@ -32,11 +31,6 @@ class ActionTestPage extends ConsumerWidget {
             isLoading: state.isLoading,
             enabled: !state.isLoading,
             onTap: () async {
-              final now = DateTime.now();
-              final year = now.year;
-              final month = now.month;
-              final day = now.day;
-
               final date = DateTime(2024, 1, 2);
 
               final dto = CreateDailyReportDto(

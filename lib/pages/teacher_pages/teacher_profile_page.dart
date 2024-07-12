@@ -4,14 +4,15 @@ import 'package:pms_app/common/components/tile.dart';
 import 'package:pms_app/features/session/data/providers/entity_id_provider.dart';
 import 'package:pms_app/features/student_features/student_profile/data/providers/student_info_provider.dart';
 import 'package:pms_app/features/student_features/student_profile/presentation/widgets/icon_buttons.dart';
+import 'package:pms_app/features/teacher_features/teacher_profile/data/providers/teacher_info_repository.dart';
 
-class ProfilePage extends ConsumerWidget {
-  const ProfilePage({super.key});
+class TeacherProfilePage extends ConsumerWidget {
+  const TeacherProfilePage({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
     final entityId = ref.watch(entityIdProvider);
-    final student = ref.watch(studentInfoProvider(entityId));
+    final teacher = ref.watch(teacherInfoProvider(entityId));
 
     return Scaffold(
       appBar: AppBar(
@@ -21,7 +22,7 @@ class ProfilePage extends ConsumerWidget {
         onRefresh: () async {
           return ref.invalidate(studentInfoProvider);
         },
-        child: student.when(
+        child: teacher.when(
           data: (data) {
             return ListView(
               children: [
@@ -41,7 +42,7 @@ class ProfilePage extends ConsumerWidget {
                 ),
                 Tile(
                   iconData: Icons.mail_outline_rounded,
-                  title: data.email,
+                  title: data.email ?? "",
                   subtitle: 'Correo institucional',
                   reversed: true,
                   trailingIcon: const SizedBox(),

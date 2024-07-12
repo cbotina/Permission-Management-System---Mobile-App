@@ -14,11 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+AbsenceCountView _$AbsenceCountViewFromJson(Map<String, dynamic> json) {
+  return _AbsenceCountView.fromJson(json);
+}
+
 /// @nodoc
 mixin _$AbsenceCountView {
-  int get absences => throw _privateConstructorUsedError;
+  String get absences => throw _privateConstructorUsedError;
   String get student => throw _privateConstructorUsedError;
+  Gender get studentGender => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AbsenceCountViewCopyWith<AbsenceCountView> get copyWith =>
       throw _privateConstructorUsedError;
@@ -30,7 +36,7 @@ abstract class $AbsenceCountViewCopyWith<$Res> {
           AbsenceCountView value, $Res Function(AbsenceCountView) then) =
       _$AbsenceCountViewCopyWithImpl<$Res, AbsenceCountView>;
   @useResult
-  $Res call({int absences, String student});
+  $Res call({String absences, String student, Gender studentGender});
 }
 
 /// @nodoc
@@ -48,16 +54,21 @@ class _$AbsenceCountViewCopyWithImpl<$Res, $Val extends AbsenceCountView>
   $Res call({
     Object? absences = null,
     Object? student = null,
+    Object? studentGender = null,
   }) {
     return _then(_value.copyWith(
       absences: null == absences
           ? _value.absences
           : absences // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       student: null == student
           ? _value.student
           : student // ignore: cast_nullable_to_non_nullable
               as String,
+      studentGender: null == studentGender
+          ? _value.studentGender
+          : studentGender // ignore: cast_nullable_to_non_nullable
+              as Gender,
     ) as $Val);
   }
 }
@@ -70,7 +81,7 @@ abstract class _$$AbsenceCountViewImplCopyWith<$Res>
       __$$AbsenceCountViewImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int absences, String student});
+  $Res call({String absences, String student, Gender studentGender});
 }
 
 /// @nodoc
@@ -86,33 +97,46 @@ class __$$AbsenceCountViewImplCopyWithImpl<$Res>
   $Res call({
     Object? absences = null,
     Object? student = null,
+    Object? studentGender = null,
   }) {
     return _then(_$AbsenceCountViewImpl(
       absences: null == absences
           ? _value.absences
           : absences // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       student: null == student
           ? _value.student
           : student // ignore: cast_nullable_to_non_nullable
               as String,
+      studentGender: null == studentGender
+          ? _value.studentGender
+          : studentGender // ignore: cast_nullable_to_non_nullable
+              as Gender,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$AbsenceCountViewImpl implements _AbsenceCountView {
-  const _$AbsenceCountViewImpl({required this.absences, required this.student});
+  const _$AbsenceCountViewImpl(
+      {required this.absences,
+      required this.student,
+      required this.studentGender});
+
+  factory _$AbsenceCountViewImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AbsenceCountViewImplFromJson(json);
 
   @override
-  final int absences;
+  final String absences;
   @override
   final String student;
+  @override
+  final Gender studentGender;
 
   @override
   String toString() {
-    return 'AbsenceCountView(absences: $absences, student: $student)';
+    return 'AbsenceCountView(absences: $absences, student: $student, studentGender: $studentGender)';
   }
 
   @override
@@ -122,11 +146,15 @@ class _$AbsenceCountViewImpl implements _AbsenceCountView {
             other is _$AbsenceCountViewImpl &&
             (identical(other.absences, absences) ||
                 other.absences == absences) &&
-            (identical(other.student, student) || other.student == student));
+            (identical(other.student, student) || other.student == student) &&
+            (identical(other.studentGender, studentGender) ||
+                other.studentGender == studentGender));
   }
 
+  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, absences, student);
+  int get hashCode =>
+      Object.hash(runtimeType, absences, student, studentGender);
 
   @JsonKey(ignore: true)
   @override
@@ -134,17 +162,30 @@ class _$AbsenceCountViewImpl implements _AbsenceCountView {
   _$$AbsenceCountViewImplCopyWith<_$AbsenceCountViewImpl> get copyWith =>
       __$$AbsenceCountViewImplCopyWithImpl<_$AbsenceCountViewImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AbsenceCountViewImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _AbsenceCountView implements AbsenceCountView {
   const factory _AbsenceCountView(
-      {required final int absences,
-      required final String student}) = _$AbsenceCountViewImpl;
+      {required final String absences,
+      required final String student,
+      required final Gender studentGender}) = _$AbsenceCountViewImpl;
+
+  factory _AbsenceCountView.fromJson(Map<String, dynamic> json) =
+      _$AbsenceCountViewImpl.fromJson;
 
   @override
-  int get absences;
+  String get absences;
   @override
   String get student;
+  @override
+  Gender get studentGender;
   @override
   @JsonKey(ignore: true)
   _$$AbsenceCountViewImplCopyWith<_$AbsenceCountViewImpl> get copyWith =>

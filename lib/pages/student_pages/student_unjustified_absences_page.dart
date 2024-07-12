@@ -10,7 +10,7 @@ import 'package:pms_app/features/student_features/student_unjustified_absences/d
 import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
 import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/unjustified_absences_provider.dart';
 import 'package:pms_app/features/student_features/student_unjustified_absences/domain/models/unjustified_absence_details_view.dart';
-import 'package:pms_app/pages/justify_absences_page.dart';
+import 'package:pms_app/pages/student_pages/justify_absences_page.dart';
 
 class StudentUnjustifiedAbsencesPage extends ConsumerWidget {
   const StudentUnjustifiedAbsencesPage({super.key});
