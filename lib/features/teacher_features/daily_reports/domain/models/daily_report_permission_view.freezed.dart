@@ -26,7 +26,7 @@ mixin _$DailyReportPermissionView {
   int get studentId => throw _privateConstructorUsedError;
   String get studentName => throw _privateConstructorUsedError;
   String get permissionReason => throw _privateConstructorUsedError;
-  String get permissionStatus => throw _privateConstructorUsedError;
+  PermissionStatus get permissionStatus => throw _privateConstructorUsedError;
   int get permissionId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $DailyReportPermissionViewCopyWith<$Res> {
       int studentId,
       String studentName,
       String permissionReason,
-      String permissionStatus,
+      PermissionStatus permissionStatus,
       int permissionId});
 }
 
@@ -97,7 +97,7 @@ class _$DailyReportPermissionViewCopyWithImpl<$Res,
       permissionStatus: null == permissionStatus
           ? _value.permissionStatus
           : permissionStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as PermissionStatus,
       permissionId: null == permissionId
           ? _value.permissionId
           : permissionId // ignore: cast_nullable_to_non_nullable
@@ -121,7 +121,7 @@ abstract class _$$DailyReportPermissionViewImplCopyWith<$Res>
       int studentId,
       String studentName,
       String permissionReason,
-      String permissionStatus,
+      PermissionStatus permissionStatus,
       int permissionId});
 }
 
@@ -170,7 +170,7 @@ class __$$DailyReportPermissionViewImplCopyWithImpl<$Res>
       permissionStatus: null == permissionStatus
           ? _value.permissionStatus
           : permissionStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as PermissionStatus,
       permissionId: null == permissionId
           ? _value.permissionId
           : permissionId // ignore: cast_nullable_to_non_nullable
@@ -205,7 +205,7 @@ class _$DailyReportPermissionViewImpl implements _DailyReportPermissionView {
   @override
   final String permissionReason;
   @override
-  final String permissionStatus;
+  final PermissionStatus permissionStatus;
   @override
   final int permissionId;
 
@@ -262,7 +262,7 @@ abstract class _DailyReportPermissionView implements DailyReportPermissionView {
       required final int studentId,
       required final String studentName,
       required final String permissionReason,
-      required final String permissionStatus,
+      required final PermissionStatus permissionStatus,
       required final int permissionId}) = _$DailyReportPermissionViewImpl;
 
   factory _DailyReportPermissionView.fromJson(Map<String, dynamic> json) =
@@ -279,7 +279,7 @@ abstract class _DailyReportPermissionView implements DailyReportPermissionView {
   @override
   String get permissionReason;
   @override
-  String get permissionStatus;
+  PermissionStatus get permissionStatus;
   @override
   int get permissionId;
   @override

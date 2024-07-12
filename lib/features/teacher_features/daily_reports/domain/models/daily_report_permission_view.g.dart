@@ -14,7 +14,8 @@ _$DailyReportPermissionViewImpl _$$DailyReportPermissionViewImplFromJson(
       studentId: (json['studentId'] as num).toInt(),
       studentName: json['studentName'] as String,
       permissionReason: json['permissionReason'] as String,
-      permissionStatus: json['permissionStatus'] as String,
+      permissionStatus:
+          $enumDecode(_$PermissionStatusEnumMap, json['permissionStatus']),
       permissionId: (json['permissionId'] as num).toInt(),
     );
 
@@ -26,6 +27,13 @@ Map<String, dynamic> _$$DailyReportPermissionViewImplToJson(
       'studentId': instance.studentId,
       'studentName': instance.studentName,
       'permissionReason': instance.permissionReason,
-      'permissionStatus': instance.permissionStatus,
+      'permissionStatus': _$PermissionStatusEnumMap[instance.permissionStatus]!,
       'permissionId': instance.permissionId,
     };
+
+const _$PermissionStatusEnumMap = {
+  PermissionStatus.pending: 'P',
+  PermissionStatus.leavePermission: 'L',
+  PermissionStatus.approved: 'A',
+  PermissionStatus.rejected: 'R',
+};

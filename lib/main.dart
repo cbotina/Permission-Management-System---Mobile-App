@@ -6,7 +6,10 @@ import 'package:pms_app/common/themes/light_theme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pms_app/features/auth/data/providers/is_logged_in.dart';
 import 'package:pms_app/pages/actions_test_page.dart';
+import 'package:pms_app/pages/login_page.dart';
+import 'package:pms_app/pages/student_pages/student_main_menu_page.dart';
 import 'package:pms_app/pages/teacher_pages/absence_count_page.dart';
 import 'package:pms_app/pages/teacher_pages/daily_reports_page.dart';
 import 'package:pms_app/pages/teacher_pages/make_daily_report_page.dart';
@@ -39,11 +42,11 @@ class MyApp extends StatelessWidget {
           GlobalMaterialLocalizations.delegate,
         ],
         theme: lightTheme,
-        home: const TeacherProfilePage()
+        home: DailyReportsPage()
         // home: Consumer(
         //   builder: (context, ref, child) {
         //     final isLoggedIn = ref.watch(isLoggedInProvider);
-        //     return isLoggedIn ? const MainMenuPage() : const LoginPage();
+        //     return isLoggedIn ? const StudentMainMenuPage() : const LoginPage();
         //   },
         // ),
         );

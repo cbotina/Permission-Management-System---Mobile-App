@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:pms_app/features/student_features/student_permissions/domain/models/permission.dart';
 
 part 'daily_report_permission_view.freezed.dart';
 part 'daily_report_permission_view.g.dart';
@@ -11,7 +12,7 @@ class DailyReportPermissionView with _$DailyReportPermissionView {
     required int studentId,
     required String studentName,
     required String permissionReason,
-    required String permissionStatus,
+    required PermissionStatus permissionStatus,
     required int permissionId,
   }) = _DailyReportPermissionView;
 

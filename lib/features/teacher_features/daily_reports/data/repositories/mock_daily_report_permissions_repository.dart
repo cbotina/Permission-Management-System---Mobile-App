@@ -6,27 +6,27 @@ class MockDailyReportPermissionsRepository
   @override
   Future<List<DailyReportPermissionView>> getDailyReportPermissions(
       int dailyReportId) async {
-    return mockDailyReportPermissions;
+    return [];
   }
 }
 
-final List<DailyReportPermissionView> mockDailyReportPermissions = [
-  const DailyReportPermissionView(
-    dailyReportId: 20,
-    absenceId: 28,
-    studentId: 35,
-    studentName: "Bastidas Erazo Nicol Alejandra",
-    permissionReason: "Cita medica",
-    permissionStatus: "P",
-    permissionId: 12,
-  ),
-  const DailyReportPermissionView(
-    dailyReportId: 20,
-    absenceId: 29,
-    studentId: 38,
-    studentName: "Bravo Martinez Juan Andres",
-    permissionReason: "Enfermedad",
-    permissionStatus: "P",
-    permissionId: 13,
-  ),
-];
+// final List<DailyReportPermissionView> mockDailyReportPermissions = [
+//   const DailyReportPermissionView(
+//     dailyReportId: 20,
+//     absenceId: 28,
+//     studentId: 35,
+//     studentName: "Bastidas Erazo Nicol Alejandra",
+//     permissionReason: "Cita medica",
+//     permissionStatus: "P",
+//     permissionId: 12,
+//   ),
+//   const DailyReportPermissionView(
+//     dailyReportId: 20,
+//     absenceId: 29,
+//     studentId: 38,
+//     studentName: "Bravo Martinez Juan Andres",
+//     permissionReason: "Enfermedad",
+//     permissionStatus: "P",
+//     permissionId: 13,
+//   ),
+// ];

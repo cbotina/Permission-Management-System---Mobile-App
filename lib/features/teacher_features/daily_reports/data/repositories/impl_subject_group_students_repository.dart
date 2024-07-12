@@ -26,12 +26,10 @@ class ImplSubjectGroupStudentsRepository
     final uri =
         Uri.parse('${ENV.backendUrl}/subject-groups/$subjectGroupId/students');
 
-    log(uri.toString());
     final response = await http.get(
       uri,
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
-    log(response.body.toString());
 
     if (response.statusCode == 401) {
       await ref.read(authControllerProvider.notifier).logout();
