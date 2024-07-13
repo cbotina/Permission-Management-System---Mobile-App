@@ -5,9 +5,12 @@ import 'package:pms_app/features/student_features/student_profile/domain/models/
 import 'package:pms_app/features/teacher_features/absences_report/data/providers/subject_absence_count_provider.dart';
 import 'package:pms_app/features/teacher_features/absences_report/data/providers/subject_group_student_absences_provider.dart';
 import 'package:pms_app/features/teacher_features/absences_report/domain/models/absence_count_view.dart';
+import 'package:pms_app/pages/teacher_pages/student_absences_report_page.dart';
 
 class AbsenceCountPage extends StatelessWidget {
-  const AbsenceCountPage({super.key});
+  final int subjectGroupId;
+
+  const AbsenceCountPage({super.key, required this.subjectGroupId});
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,14 @@ class AbsenceCountPage extends StatelessWidget {
         children: [
           Consumer(
             builder: (context, ref, child) {
-              final absenceCount = ref.watch(subjectAbsenceCountProvider(61));
+              final absenceCount =
+                  ref.watch(subjectAbsenceCountProvider(subjectGroupId));
               return absenceCount.when(
                 data: (data) {
                   return Column(
-                    children:
-                        data.map((e) => AbsenceCountWidget(data: e)).toList(),
+                    children: data.map((e) {
+                      return AbsenceCountWidget(data: e);
+                    }).toList(),
                   );
                 },
                 error: (error, stackTrace) => Text(error.toString()),
@@ -54,6 +59,17 @@ class AbsenceCountWidget extends StatelessWidget {
           : Icons.person_3,
       title: data.student,
       subtitle: '${data.absences}  faltas en el semestre',
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) {
+            return StudentAbsencesReportPage(
+              studentId: data.studentId,
+              studentName: data.student,
+              subjectGroupId: data.subjectGroupId,
+            );
+          },
+        ));
+      },
     );
   }
 }

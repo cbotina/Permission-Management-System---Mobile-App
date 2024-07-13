@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,6 +27,8 @@ class ImplTeachersRepository implements ITeachersRepository {
       uri,
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
+
+    log(response.body);
 
     final jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
 

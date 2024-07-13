@@ -25,13 +25,13 @@ final subjectGroupStudentsWithPermissionsProvider =
     final dailyReportId =
         scheduleWithDailyReport.dailyReportView!.dailyReportId;
 
-    studentPermissions =
-        ref.watch(dailyReportPermissionsProvider(dailyReportId)).asData!.value;
+    // studentPermissions =
+    //     ref.watch(dailyReportPermissionsProvider(dailyReportId)).asData!.value;
 
-    print(studentPermissions);
-    // studentPermissions = await ref
-    //     .watch(dailyReportPermissionsRepositoryProvider)
-    //     .getDailyReportPermissions(dailyReportId);
+    // print(studentPermissions);
+    studentPermissions = await ref
+        .watch(dailyReportPermissionsRepositoryProvider)
+        .getDailyReportPermissions(dailyReportId);
   }
 
   return students2.when(

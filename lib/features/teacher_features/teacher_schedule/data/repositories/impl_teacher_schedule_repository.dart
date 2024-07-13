@@ -39,7 +39,6 @@ class ImplTeacherScheduleRepository implements ITeacherScheduleRepository {
     final jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
 
     if (jsonResponse['message'] ?? "" == 'Unauthorized') {
-      print("errorsito");
       await ref.read(authControllerProvider.notifier).logout();
       throw SessionExpiredError('Sesión expirada. Vuelva a Iniciar Sesión');
     }

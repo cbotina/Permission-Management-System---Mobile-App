@@ -38,61 +38,22 @@ class DailyReportsPage extends ConsumerWidget {
                 data: (data) {
                   return Column(
                     children: data.map((e) {
+                      final isSubmitted =
+                          e.dailyReportView?.isSubmitted ?? false;
+
                       return DailyReportsWidget(
                         data: e,
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return MakeDailyReportPage(data: e);
+                        onTap: isSubmitted
+                            ? null
+                            : () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return MakeDailyReportPage(data: e);
+                                    },
+                                  ),
+                                );
                               },
-                            ),
-                          );
-                          // final students = ref.watch(
-                          //   subjectGroupStudentsWithPermissionsProvider(e),
-                          // );
-
-                          // return students.when(
-                          //   data: (studentsWithPermission) {
-                          //     ref
-                          //         .read(memoryDailyReportDataProvider.notifier)
-                          //         .setData(studentsWithPermission);
-
-                          //     Navigator.of(context).push(
-                          //       MaterialPageRoute(
-                          //         builder: (context) {
-                          //           return const MakeDailyReportPage();
-                          //         },
-                          //       ),
-                          //     );
-                          //   },
-                          //   error: (error, stackTrace) =>
-                          //       Text(error.toString()),
-                          //   loading: () => const CircularProgressIndicator(),
-                          // );
-
-                          // final students = ref.watch(
-                          //     subjectGroupStudentsWithPermissionsProvider(e));
-
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //   builder: (context) {
-                          //     return students.when(
-                          //       data: (data) {
-                          //         ref
-                          //             .watch(memoryDailyReportDataProvider
-                          //                 .notifier)
-                          //             .setData(data);
-
-                          //         return;
-                          //       },
-                          //       error: (error, stackTrace) =>
-                          //           const CircularProgressIndicator(),
-                          //       loading: () =>
-                          //           const CircularProgressIndicator(),
-                          //     );
-                          //   },
-                          // ));
-                        },
                       );
                     }).toList(),
                   );
@@ -110,11 +71,11 @@ class DailyReportsPage extends ConsumerWidget {
 
 class DailyReportsWidget extends StatelessWidget {
   final ScheduleWithDailyReport data;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   const DailyReportsWidget({
     super.key,
     required this.data,
-    required this.onTap,
+    this.onTap,
   });
 
   @override

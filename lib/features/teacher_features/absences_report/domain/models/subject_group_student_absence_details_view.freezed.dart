@@ -21,7 +21,7 @@ mixin _$SubjectGroupStudentAbsenceDetailsView {
   TimeOfDay get startTime => throw _privateConstructorUsedError;
   TimeOfDay get endTime => throw _privateConstructorUsedError;
   String? get teacherNote => throw _privateConstructorUsedError;
-  String get permissionStatus => throw _privateConstructorUsedError;
+  PermissionStatus? get permissionStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SubjectGroupStudentAbsenceDetailsViewCopyWith<
@@ -43,7 +43,7 @@ abstract class $SubjectGroupStudentAbsenceDetailsViewCopyWith<$Res> {
       TimeOfDay startTime,
       TimeOfDay endTime,
       String? teacherNote,
-      String permissionStatus});
+      PermissionStatus? permissionStatus});
 }
 
 /// @nodoc
@@ -65,7 +65,7 @@ class _$SubjectGroupStudentAbsenceDetailsViewCopyWithImpl<$Res,
     Object? startTime = null,
     Object? endTime = null,
     Object? teacherNote = freezed,
-    Object? permissionStatus = null,
+    Object? permissionStatus = freezed,
   }) {
     return _then(_value.copyWith(
       absenceId: null == absenceId
@@ -88,10 +88,10 @@ class _$SubjectGroupStudentAbsenceDetailsViewCopyWithImpl<$Res,
           ? _value.teacherNote
           : teacherNote // ignore: cast_nullable_to_non_nullable
               as String?,
-      permissionStatus: null == permissionStatus
+      permissionStatus: freezed == permissionStatus
           ? _value.permissionStatus
           : permissionStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as PermissionStatus?,
     ) as $Val);
   }
 }
@@ -111,7 +111,7 @@ abstract class _$$SubjectGroupStudentAbsenceDetailsViewImplCopyWith<$Res>
       TimeOfDay startTime,
       TimeOfDay endTime,
       String? teacherNote,
-      String permissionStatus});
+      PermissionStatus? permissionStatus});
 }
 
 /// @nodoc
@@ -132,7 +132,7 @@ class __$$SubjectGroupStudentAbsenceDetailsViewImplCopyWithImpl<$Res>
     Object? startTime = null,
     Object? endTime = null,
     Object? teacherNote = freezed,
-    Object? permissionStatus = null,
+    Object? permissionStatus = freezed,
   }) {
     return _then(_$SubjectGroupStudentAbsenceDetailsViewImpl(
       absenceId: null == absenceId
@@ -155,10 +155,10 @@ class __$$SubjectGroupStudentAbsenceDetailsViewImplCopyWithImpl<$Res>
           ? _value.teacherNote
           : teacherNote // ignore: cast_nullable_to_non_nullable
               as String?,
-      permissionStatus: null == permissionStatus
+      permissionStatus: freezed == permissionStatus
           ? _value.permissionStatus
           : permissionStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+              as PermissionStatus?,
     ));
   }
 }
@@ -186,7 +186,7 @@ class _$SubjectGroupStudentAbsenceDetailsViewImpl
   @override
   final String? teacherNote;
   @override
-  final String permissionStatus;
+  final PermissionStatus? permissionStatus;
 
   @override
   String toString() {
@@ -232,7 +232,7 @@ abstract class _SubjectGroupStudentAbsenceDetailsView
           required final TimeOfDay startTime,
           required final TimeOfDay endTime,
           required final String? teacherNote,
-          required final String permissionStatus}) =
+          required final PermissionStatus? permissionStatus}) =
       _$SubjectGroupStudentAbsenceDetailsViewImpl;
 
   @override
@@ -246,7 +246,7 @@ abstract class _SubjectGroupStudentAbsenceDetailsView
   @override
   String? get teacherNote;
   @override
-  String get permissionStatus;
+  PermissionStatus? get permissionStatus;
   @override
   @JsonKey(ignore: true)
   _$$SubjectGroupStudentAbsenceDetailsViewImplCopyWith<

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:pms_app/common/providers/repository_providers.dart';
@@ -26,9 +28,13 @@ class AuthService {
     final Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
     final int userId = decodedToken['id'];
     final int entityId = decodedToken['entityId'];
-    final UserRole role = decodedToken['ROLE'].toString().toUserRole();
+    final UserRole role = decodedToken['role'].toString().toUserRole();
+
+    log(decodedToken.toString());
 
     final period = await _periodsRepository.getActivePeriod();
+
+    log(role.toString());
 
     return AuthState(AuthResult.success, userId, entityId, period!.id, role);
   }

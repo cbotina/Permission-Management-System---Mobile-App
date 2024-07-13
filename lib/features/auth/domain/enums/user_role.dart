@@ -12,11 +12,6 @@ extension ToUserRole on String {
         return UserRole.student;
       case 'TEACHER':
         return UserRole.teacher;
-      case 'SECRETARY':
-        return UserRole.secretary;
-      case 'ADMIN':
-        return UserRole.admin;
-
       default:
         return UserRole.student;
     }
