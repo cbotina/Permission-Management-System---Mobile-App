@@ -83,6 +83,35 @@ class RequestPermissionFormButton extends ConsumerWidget {
                 );
               },
             );
+
+            return;
+          }
+          if (ref
+              .read(selectedAbsenceTimeSlotsProvider)
+              .absenceTimeSlots
+              .isEmpty) {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Formato incompleto"),
+                  content: const Text(
+                      "Debe agregar al menos una franja horaria al permiso"),
+                  actions: [
+                    PrimaryButton(
+                      // isLoading: state.isLoading,
+                      // enabled: !state.isLoading,
+                      onTap: Navigator.of(context).pop,
+                      child: const Text(
+                        "Entendido",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  ],
+                );
+              },
+            );
+            return;
           }
           final reason = selectedReason == 'Otro'
               ? _otherReasonController.text

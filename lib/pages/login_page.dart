@@ -13,13 +13,24 @@ class LoginPage extends StatelessWidget {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          SizedBox(
+          Container(
             height: MediaQuery.of(context).size.height,
-            child: Image.asset(
-              'assets/images/background.jpg',
-              fit: BoxFit.fitHeight,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.teal,
+                  Color.fromARGB(255, 59, 111, 106),
+                ],
+              ),
             ),
           ),
+          // SizedBox(
+          //   height: MediaQuery.of(context).size.height,
+          //   child: Image.asset(
+          //     'assets/images/background.jpg',
+          //     fit: BoxFit.fitHeight,
+          //   ),
+          // ),
           Container(
             height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(

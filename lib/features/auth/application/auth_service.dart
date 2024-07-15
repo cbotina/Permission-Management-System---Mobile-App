@@ -34,8 +34,6 @@ class AuthService {
 
     final period = await _periodsRepository.getActivePeriod();
 
-    log(role.toString());
-
     return AuthState(AuthResult.success, userId, entityId, period!.id, role);
   }
 

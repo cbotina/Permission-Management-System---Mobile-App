@@ -252,6 +252,7 @@ class JustifyAbsencesFormButton extends ConsumerWidget {
                 );
               },
             );
+            return;
           }
 
           final reason = selectedReason == 'Otro'
@@ -261,6 +262,28 @@ class JustifyAbsencesFormButton extends ConsumerWidget {
           final selectedAbsencesIds = ref
               .watch(selectedJustifiableAbsencesIdsProvider)
               .selectedAbsencesIds;
+
+          if (selectedAbsencesIds.isEmpty) {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Formato incompleto"),
+                  content: const Text("Debe seleccionar al menos una falta"),
+                  actions: [
+                    PrimaryButton(
+                      onTap: Navigator.of(context).pop,
+                      child: const Text(
+                        "Entendido",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  ],
+                );
+              },
+            );
+            return;
+          }
 
           final info = JustifyAbsencesInfo(
             reason: reason,

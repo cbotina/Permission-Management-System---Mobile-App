@@ -1,10 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/providers/repository_providers.dart';
-import 'package:pms_app/features/student_features/permission_requests/domain/models/student_schedule_view.dart';
 import 'package:pms_app/features/session/data/providers/active_period_id_provider.dart';
 import 'package:pms_app/features/session/data/providers/entity_id_provider.dart';
 import 'package:pms_app/features/student_features/student_schedule/data/providers/time_slots_repository.dart';
-import 'package:pms_app/features/student_features/student_schedule/domain/models/time_slot_with_student_schedule.dart';
 import 'package:pms_app/features/teacher_features/teacher_schedule/domain/models/teacher_schedule_view.dart';
 import 'package:pms_app/features/teacher_features/teacher_schedule/domain/models/time_slot_with_teacher_schedule.dart';
 

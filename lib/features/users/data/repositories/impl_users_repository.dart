@@ -24,7 +24,6 @@ class ImplUsersRepository implements IUsersRepository {
     final uri = Uri.parse('${ENV.backendUrl}/users/$userId/change-password');
 
     log(uri.toString());
-    print("===");
     final response = await http.patch(
       uri,
       headers: {

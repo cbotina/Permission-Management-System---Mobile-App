@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/primary_button.dart';
 import 'package:pms_app/common/extensions/async_value_ui.dart';
-import 'package:pms_app/common/extensions/capitalize.dart';
 import 'package:pms_app/common/providers/today_provider.dart';
 import 'package:pms_app/features/student_features/student_permissions/domain/models/permission.dart';
 import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/permission_status.dart';
@@ -10,7 +9,6 @@ import 'package:pms_app/features/student_features/student_profile/domain/models/
 import 'package:pms_app/features/teacher_features/daily_reports/data/dto/create_daily_report_dto.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/data/providers/memory_daily_report_data.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/data/providers/subject_group_students_with_permissions_provider.dart';
-import 'package:pms_app/features/teacher_features/daily_reports/domain/models/student_with_permission.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/presentation/controllers/create_daily_report_controller.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/presentation/widgets/components/add_comment_to_absence_form.dart';
 import 'package:pms_app/features/teacher_features/teacher_schedule/domain/models/schedule_with_daily_report.dart';
@@ -101,6 +99,8 @@ class CreateDailyReportFormButton extends ConsumerWidget {
     });
 
     return PrimaryButton(
+      isLoading: state.isLoading,
+      enabled: !state.isLoading,
       child: const Text(
         "Enviar reporte de asistencia",
         style: TextStyle(
@@ -185,10 +185,11 @@ class _StudentWidgetState extends ConsumerState<StudentWidget> {
           children: [
             Image.asset(
               data.data.student.studentGender == Gender.male
-                  ? 'images/man.png'
-                  : 'images/woman.png',
+                  ? 'assets/images/man.png'
+                  : 'assets/images/woman.png',
               width: 170,
             ),
+            const SizedBox(height: 15),
             Text(
               data.data.student.studentLastName.toUpperCase(),
               style: const TextStyle(

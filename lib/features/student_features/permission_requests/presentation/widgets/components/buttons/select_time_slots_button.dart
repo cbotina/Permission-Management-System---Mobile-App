@@ -28,6 +28,7 @@ class SelectTimeSlotsButton extends ConsumerWidget {
         ],
       ),
       onTap: () async {
+        ref.read(selectedAbsenceTimeSlotsProvider.notifier).reset();
         final DateTimeRange? dateTimeRange = await showDateRangePicker(
           context: context,
           firstDate: DateTime.now().add(const Duration(days: 1)),

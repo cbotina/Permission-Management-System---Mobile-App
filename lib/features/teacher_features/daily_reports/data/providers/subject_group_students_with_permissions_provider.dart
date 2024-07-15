@@ -1,6 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/providers/repository_providers.dart';
-import 'package:pms_app/features/teacher_features/daily_reports/data/providers/daily_report_permissions_provider.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/data/providers/subject_group_students_provider.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/domain/models/daily_report_permission_view.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/domain/models/student_with_permission.dart';

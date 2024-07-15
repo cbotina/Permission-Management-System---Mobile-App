@@ -11,7 +11,6 @@ class TeacherProfilePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final entityId = ref.watch(entityIdProvider);
-    print(entityId);
     final teacher = ref.watch(teacherInfoProvider(entityId));
 
     return Scaffold(

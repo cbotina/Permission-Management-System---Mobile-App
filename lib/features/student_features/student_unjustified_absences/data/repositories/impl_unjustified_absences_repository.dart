@@ -54,8 +54,6 @@ class ImplUnjustifiedAbsencesRepository
 
     final jsonItems = jsonResponse['items'] as List<dynamic>;
 
-    print(jsonItems);
-
     final items = jsonItems
         .map((e) => UnjustifiedAbsenceDetailsView.fromJson(e))
         .toList();
@@ -75,7 +73,6 @@ class ImplUnjustifiedAbsencesRepository
     final uri =
         Uri.parse('${ENV.backendUrl}/students/$studentId/justify-absences');
     log(uri.toString());
-    print("==========");
     final response = await http.post(
       uri,
       headers: {

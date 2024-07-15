@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:pms_app/common/components/table/pagination_widget.dart';
 import 'package:pms_app/common/components/table/table.dart';
 import 'package:pms_app/common/components/table/table_cell.dart';
 import 'package:pms_app/common/components/table/table_label.dart';
-import 'package:pms_app/common/extensions/string_to_permission_status.dart';
 import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/permission_status.dart';
 import 'package:pms_app/features/teacher_features/absences_report/data/dto/subject_group_student_absences_search_options.dart';
 import 'package:pms_app/features/teacher_features/absences_report/data/providers/subject_group_student_absences_provider.dart';

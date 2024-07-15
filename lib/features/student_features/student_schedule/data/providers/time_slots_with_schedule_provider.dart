@@ -35,7 +35,6 @@ final timeSlotsWithScheduleProvider =
       }).toList();
     },
     error: (error, stackTrace) {
-      print(error);
       return [];
     },
     loading: () => [],

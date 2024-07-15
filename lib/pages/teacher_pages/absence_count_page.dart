@@ -3,7 +3,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/tile.dart';
 import 'package:pms_app/features/student_features/student_profile/domain/models/student.dart';
 import 'package:pms_app/features/teacher_features/absences_report/data/providers/subject_absence_count_provider.dart';
-import 'package:pms_app/features/teacher_features/absences_report/data/providers/subject_group_student_absences_provider.dart';
 import 'package:pms_app/features/teacher_features/absences_report/domain/models/absence_count_view.dart';
 import 'package:pms_app/pages/teacher_pages/student_absences_report_page.dart';
 
@@ -26,6 +25,7 @@ class AbsenceCountPage extends StatelessWidget {
               final absenceCount =
                   ref.watch(subjectAbsenceCountProvider(subjectGroupId));
               return absenceCount.when(
+                skipLoadingOnRefresh: false,
                 data: (data) {
                   return Column(
                     children: data.map((e) {

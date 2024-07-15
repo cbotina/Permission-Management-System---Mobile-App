@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/secondary_button.dart';
 import 'package:pms_app/common/components/form_fields/dropdown_button_form_field.dart';
 import 'package:pms_app/common/components/form_fields/text_form_field.dart';
+import 'package:pms_app/common/constants/default_reasons.dart';
 import 'package:pms_app/features/student_features/permission_requests/data/dto/schedule_range_dates_dto.dart';
 import 'package:pms_app/features/student_features/permission_requests/data/providers/day_time_slots_provider.dart';
 import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/components/buttons/request_permission_form_button.dart';
@@ -114,12 +115,7 @@ class _PermisssionRequestPageState
               const SizedBox(height: 15),
               EnumDropdownButtonFormField(
                 validator: reasonValidator,
-                values: const [
-                  'Cita medica',
-                  'Enfermedad',
-                  'Calamidad',
-                  'Otro'
-                ],
+                values: defaultReasons,
                 label: "Motivo",
                 onSelected: (reason) {
                   setState(() {

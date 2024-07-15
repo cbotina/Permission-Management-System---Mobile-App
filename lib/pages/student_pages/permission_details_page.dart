@@ -121,7 +121,7 @@ class PermissionAbsencesTable extends ConsumerWidget {
 List<DataColumn> absenceColumns = [
   const DataColumn(label: TableLabel('Fecha')),
   const DataColumn(label: TableLabel('Horas')),
-  const DataColumn(label: TableLabel('Materia')),
+  const DataColumn(label: TableLabel('Unidad de Formación')),
   const DataColumn(label: TableLabel('Comentario Docente')),
 ];
 

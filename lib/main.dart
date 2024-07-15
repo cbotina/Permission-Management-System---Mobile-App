@@ -9,16 +9,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:pms_app/features/auth/data/providers/is_logged_in.dart';
 import 'package:pms_app/features/auth/data/providers/role_provider.dart';
 import 'package:pms_app/features/auth/domain/enums/user_role.dart';
-import 'package:pms_app/pages/actions_test_page.dart';
 import 'package:pms_app/pages/login_page.dart';
 import 'package:pms_app/pages/student_pages/student_main_menu_page.dart';
-import 'package:pms_app/pages/teacher_pages/absence_count_page.dart';
-import 'package:pms_app/pages/teacher_pages/daily_reports_page.dart';
-import 'package:pms_app/pages/teacher_pages/make_daily_report_page.dart';
 import 'package:pms_app/pages/teacher_pages/teacher_main_menu_page.dart';
-import 'package:pms_app/pages/teacher_pages/teacher_profile_page.dart';
-import 'package:pms_app/pages/teacher_pages/teacher_schedule_page.dart';
-import 'package:pms_app/pages/teacher_pages/teacher_subjects_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -44,7 +37,6 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       theme: lightTheme,
-      // home: const AbsenceCountPage()
       home: Consumer(
         builder: (context, ref, child) {
           final isLoggedIn = ref.watch(isLoggedInProvider);
