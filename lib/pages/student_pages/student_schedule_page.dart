@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/features/student_features/student_schedule/data/providers/time_slots_with_schedule_provider.dart';
 import 'package:pms_app/features/student_features/student_schedule/presentation/widgets/components/student_schedule_time_slot.dart';
 
@@ -19,15 +20,16 @@ class _StudentSchedulePageState extends ConsumerState<StudentSchedulePage> {
   @override
   Widget build(BuildContext context) {
     final schedule = ref.watch(timeSlotsWithScheduleProvider(selectedDay));
+    Future<void> refresh() async {
+      ref.invalidate(timeSlotsWithScheduleProvider);
+    }
 
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mi Horario"),
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
-          ref.invalidate(timeSlotsWithScheduleProvider);
-        },
+        onRefresh: refresh,
         child: ListView(
           padding: const EdgeInsets.all(10),
           children: [
@@ -86,8 +88,8 @@ class _StudentSchedulePageState extends ConsumerState<StudentSchedulePage> {
                   }).toList(),
                 );
               },
-              error: (error, stackTrace) => Text(error.toString()),
-              loading: () => const CircularProgressIndicator(),
+              error: (error, stackTrace) => ErrorWidgetUI(onRefresh: refresh),
+              loading: () => const Center(child: CircularProgressIndicator()),
               skipLoadingOnRefresh: false,
             ),
           ],

@@ -12,16 +12,18 @@ class StudentUnjustifiedAbsencesPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Future<void> refresh() async {
+      ref.invalidate(studentUnjustifiedAbsencesProvider);
+      ref.invalidate(justifiableAbsencesProvider);
+      ref.read(selectedJustifiableAbsencesIdsProvider.notifier).reset();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mis Faltas"),
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
-          ref.invalidate(studentUnjustifiedAbsencesProvider);
-          ref.invalidate(justifiableAbsencesProvider);
-          ref.read(selectedJustifiableAbsencesIdsProvider.notifier).reset();
-        },
+        onRefresh: refresh,
         child: ListView(
           padding: const EdgeInsets.all(15),
           children: [

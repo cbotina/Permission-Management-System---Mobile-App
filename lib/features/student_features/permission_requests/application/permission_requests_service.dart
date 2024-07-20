@@ -20,7 +20,7 @@ class PermissionRequestsService {
       int studentId, PermissionRequestInfo info) async {
     try {
       var uuid = const Uuid();
-      final fileName = uuid.v4() + info.fileExtension;
+      final fileName = '${uuid.v4()}.${info.fileExtension}';
 
       Reference fileRef =
           FirebaseStorage.instance.ref().child('evidences').child(fileName);

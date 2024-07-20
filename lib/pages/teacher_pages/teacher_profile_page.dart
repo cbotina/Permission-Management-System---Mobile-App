@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/tile.dart';
+import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/features/session/data/providers/entity_id_provider.dart';
 import 'package:pms_app/features/student_features/student_profile/presentation/widgets/icon_buttons.dart';
 import 'package:pms_app/features/teacher_features/teacher_profile/data/providers/teacher_info_repository.dart';
@@ -13,14 +14,16 @@ class TeacherProfilePage extends ConsumerWidget {
     final entityId = ref.watch(entityIdProvider);
     final teacher = ref.watch(teacherInfoProvider(entityId));
 
+    Future<void> refresh() async {
+      return ref.invalidate(teacherInfoProvider);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mi Perfil"),
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
-          return ref.invalidate(teacherInfoProvider);
-        },
+        onRefresh: refresh,
         child: teacher.when(
           data: (data) {
             return ListView(
@@ -56,7 +59,7 @@ class TeacherProfilePage extends ConsumerWidget {
               ],
             );
           },
-          error: (error, stackTrace) => Text(error.toString()),
+          error: (error, stackTrace) => ErrorWidgetUI(onRefresh: refresh),
           loading: () => const Center(child: CircularProgressIndicator()),
           skipLoadingOnRefresh: false,
         ),

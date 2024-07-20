@@ -5,6 +5,9 @@ import 'package:pms_app/common/components/table/pagination_widget.dart';
 import 'package:pms_app/common/components/table/table.dart';
 import 'package:pms_app/common/components/table/table_cell.dart';
 import 'package:pms_app/common/components/table/table_label.dart';
+import 'package:pms_app/common/errors/error_widget.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/justifiable_absences_provider.dart';
+import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/seleted_justified_absences_provider.dart';
 import 'package:pms_app/features/student_features/student_unjustified_absences/data/providers/unjustified_absences_provider.dart';
 import 'package:pms_app/features/student_features/student_unjustified_absences/domain/models/unjustified_absence_details_view.dart';
 
@@ -24,6 +27,12 @@ class _UnjustifiedAbsencesTableState
   @override
   Widget build(BuildContext context) {
     final absences = ref.watch(studentUnjustifiedAbsencesProvider(page));
+
+    Future<void> refresh() async {
+      ref.invalidate(studentUnjustifiedAbsencesProvider);
+      ref.invalidate(justifiableAbsencesProvider);
+      ref.read(selectedJustifiableAbsencesIdsProvider.notifier).reset();
+    }
 
     return absences.when(
       data: (data) {
@@ -58,8 +67,8 @@ class _UnjustifiedAbsencesTableState
           ],
         );
       },
-      error: (error, stackTrace) => Text(error.toString()),
-      loading: () => const CircularProgressIndicator(),
+      error: (error, stackTrace) => ErrorWidgetUI(onRefresh: refresh),
+      loading: () => const Center(child: CircularProgressIndicator()),
       skipLoadingOnRefresh: false,
     );
   }

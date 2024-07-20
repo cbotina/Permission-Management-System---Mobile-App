@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:pms_app/common/components/table/table.dart';
 import 'package:pms_app/common/components/table/table_cell.dart';
 import 'package:pms_app/common/components/table/table_label.dart';
+import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/permission_status.dart';
 import 'package:pms_app/features/teacher_features/absences_report/data/dto/subject_group_student_absences_search_options.dart';
 import 'package:pms_app/features/teacher_features/absences_report/data/providers/subject_group_student_absences_provider.dart';
@@ -30,38 +31,49 @@ class StudentAbsencesReportPage extends ConsumerWidget {
 
     final absences = ref.watch(subjectGroupStudentAbsencesProvider(options));
 
+    Future<void> refresh() async {
+      ref.invalidate(subjectGroupStudentAbsencesProvider);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Reporte de faltas"),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(8.0),
-        children: [
-          Text("Estudiante: $studentName"),
-          absences.when(
-            data: (data) {
-              return Column(
-                children: [
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxHeight: 350,
-                    ),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: TableWidget(
-                        columns: subjectAbsencesColumns,
-                        rows: permissionAbsencesRows(data, context),
+      body: RefreshIndicator(
+        onRefresh: refresh,
+        child: ListView(
+          padding: const EdgeInsets.all(8.0),
+          children: [
+            Text("Estudiante: $studentName"),
+            const SizedBox(
+              height: 10,
+            ),
+            absences.when(
+              skipLoadingOnRefresh: false,
+              data: (data) {
+                return Column(
+                  children: [
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxHeight: 350,
+                      ),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: TableWidget(
+                          columns: subjectAbsencesColumns,
+                          rows: permissionAbsencesRows(data, context),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              );
-            },
-            error: (error, stackTrace) => Text(error.toString()),
-            loading: () => const CircularProgressIndicator(),
-          ),
-        ],
+                  ],
+                );
+              },
+              error: (error, stackTrace) => ErrorWidgetUI(onRefresh: refresh),
+              loading: () => const Center(child: CircularProgressIndicator()),
+            ),
+          ],
+        ),
       ),
     );
   }

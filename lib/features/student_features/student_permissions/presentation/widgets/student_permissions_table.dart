@@ -5,6 +5,7 @@ import 'package:pms_app/common/components/table/pagination_widget.dart';
 import 'package:pms_app/common/components/table/table.dart';
 import 'package:pms_app/common/components/table/table_cell.dart';
 import 'package:pms_app/common/components/table/table_label.dart';
+import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/features/student_features/student_permissions/data/providers/student_period_permissions_provider.dart';
 import 'package:pms_app/features/student_features/student_permissions/domain/models/permission.dart';
 import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/permission_status.dart';
@@ -25,6 +26,11 @@ class _StudentPermissionsTableState
   @override
   Widget build(BuildContext context) {
     final permissions = ref.watch(studentPermissionsProvider(page));
+
+    Future<void> refresh() async {
+      ref.invalidate(studentPermissionsProvider);
+    }
+
     return permissions.when(
       data: (data) {
         return Column(
@@ -58,10 +64,8 @@ class _StudentPermissionsTableState
           ],
         );
       },
-      error: (error, stackTrace) {
-        return Center(child: Text(error.toString()));
-      },
-      loading: () => const CircularProgressIndicator(),
+      error: (error, stackTrace) => ErrorWidgetUI(onRefresh: refresh),
+      loading: () => const Center(child: CircularProgressIndicator()),
       skipLoadingOnRefresh: false,
     );
   }

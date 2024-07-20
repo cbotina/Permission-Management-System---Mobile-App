@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/primary_button.dart';
@@ -5,15 +7,25 @@ import 'package:pms_app/common/components/buttons/primary_button.dart';
 extension AsyncValueUI on AsyncValue {
   void dialogOnError(BuildContext context) {
     if (!isLoading && hasError) {
+      log(error.toString());
+      final isServerSleeping = error.toString().contains('ClientException');
+
       showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text(
-              "Ha ocurrido un error",
-              textAlign: TextAlign.center,
-            ),
-            content: Text(error.toString()),
+            title: !isServerSleeping
+                ? const Text(
+                    "Ha ocurrido un error",
+                    textAlign: TextAlign.center,
+                  )
+                : const Text(
+                    "Servidor iniciándose",
+                    textAlign: TextAlign.center,
+                  ),
+            content: isServerSleeping
+                ? const Text("Espere un minuto y vuelva a intentar")
+                : Text(error.toString()),
             actions: [
               PrimaryButton(
                 onTap: Navigator.of(context).pop,

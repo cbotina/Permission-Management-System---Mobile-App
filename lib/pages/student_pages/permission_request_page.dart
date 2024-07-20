@@ -149,8 +149,12 @@ class _PermisssionRequestPageState
               ),
               daytimeSlots.when(
                 data: (data) => DateRangeTimeSlotsWidget(dayTimeSlots: data),
-                error: (error, stackTrace) => Text(error.toString()),
-                loading: () => const CircularProgressIndicator(),
+                error: (error, stackTrace) => const Text(
+                    "Ha ocurrido un error, vuelva a seleccionar la fecha"),
+                loading: () => const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
               ),
               const SizedBox(height: 15),
               OutlinedTextFormField(

@@ -8,14 +8,16 @@ class StudentPermissionsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    Future<void> refresh() async {
+      ref.invalidate(studentPermissionsProvider);
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mis Permisos"),
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
-          ref.invalidate(studentPermissionsProvider);
-        },
+        onRefresh: refresh,
         child: ListView(
           padding: const EdgeInsets.all(15),
           children: const [

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/common/extensions/capitalize.dart';
 import 'package:pms_app/common/providers/today_provider.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/presentation/widgets/components/daily_reports_check_box.dart';
@@ -57,8 +58,11 @@ class DailyReportsPage extends ConsumerWidget {
                       }).toList(),
                     );
                   },
-                  error: (error, stackTrace) => Text(error.toString()),
-                  loading: () => const CircularProgressIndicator(),
+                  error: (error, stackTrace) => ErrorWidgetUI(onRefresh: () {
+                    ref.invalidate(scheduleWithDailyReportsProvider);
+                  }),
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
                 );
               },
             ),

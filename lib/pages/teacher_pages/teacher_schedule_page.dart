@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/features/teacher_features/teacher_schedule/data/providers/time_slots_with_teacher_schedule_provider.dart';
 import 'package:pms_app/features/teacher_features/teacher_schedule/presentation/widgets/components/teacher_schedule_wimt_slot_widget.dart';
 
@@ -14,7 +15,12 @@ class TeacherSchedulePage extends ConsumerStatefulWidget {
 }
 
 class _TeacherSchedulePageState extends ConsumerState<TeacherSchedulePage> {
+  Future<void> refresh() async {
+    ref.invalidate(timeSlotsWithTeacherScheduleProvider);
+  }
+
   String selectedDay = days[0];
+
   @override
   Widget build(BuildContext context) {
     final schedule =
@@ -24,9 +30,7 @@ class _TeacherSchedulePageState extends ConsumerState<TeacherSchedulePage> {
         title: const Text("Mi Horario"),
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
-          ref.invalidate(timeSlotsWithTeacherScheduleProvider);
-        },
+        onRefresh: refresh,
         child: ListView(
           padding: const EdgeInsets.all(10),
           children: [
@@ -86,8 +90,8 @@ class _TeacherSchedulePageState extends ConsumerState<TeacherSchedulePage> {
                   }).toList(),
                 );
               },
-              error: (error, stackTrace) => Text(error.toString()),
-              loading: () => const CircularProgressIndicator(),
+              error: (error, stackTrace) => ErrorWidgetUI(onRefresh: refresh),
+              loading: () => const Center(child: CircularProgressIndicator()),
               skipLoadingOnRefresh: false,
             ),
           ],

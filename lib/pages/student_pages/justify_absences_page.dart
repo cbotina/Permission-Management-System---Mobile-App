@@ -7,6 +7,7 @@ import 'package:pms_app/common/components/buttons/primary_button.dart';
 import 'package:pms_app/common/components/buttons/secondary_button.dart';
 import 'package:pms_app/common/components/form_fields/dropdown_button_form_field.dart';
 import 'package:pms_app/common/components/form_fields/text_form_field.dart';
+import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/common/extensions/async_value_ui.dart';
 import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/validators/other_reason_validator.dart';
 import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/validators/reason_validator.dart';
@@ -178,8 +179,10 @@ class _JustifyAbsencesPageState extends ConsumerState<JustifyAbsencesPage> {
             ),
           );
         },
-        error: (error, stackTrace) => Text(error.toString()),
-        loading: () => const CircularProgressIndicator(),
+        error: (error, stackTrace) => ErrorWidgetUI(onRefresh: () {
+          ref.invalidate(justifiableAbsencesProvider);
+        }),
+        loading: () => const Center(child: CircularProgressIndicator()),
         skipLoadingOnRefresh: false,
       ),
     );
