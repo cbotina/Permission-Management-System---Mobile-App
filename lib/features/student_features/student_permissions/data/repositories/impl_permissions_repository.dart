@@ -22,11 +22,15 @@ class ImplPermissionsRepository implements IPermissionsRepository {
     int periodId,
     int studentId,
     int page,
+    String? status,
   ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
 
-    final queryParams = buildQueryParams({'page': '$page'});
+    final queryParams = buildQueryParams({
+      'page': '$page',
+      'status': '$status',
+    });
 
     final uri = Uri.parse(
         "${ENV.backendUrl}/periods/$periodId/students/$studentId/permissions$queryParams");

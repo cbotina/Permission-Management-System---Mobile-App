@@ -9,6 +9,7 @@ class MockPermissionsRepository implements IPermissionsRepository {
     int periodId,
     int studentId,
     int page,
+    String? status,
   ) {
     return Future.value(mockStudentPermissions);
   }
