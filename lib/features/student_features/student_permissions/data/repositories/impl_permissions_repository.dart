@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/environment/environment.dart';
@@ -22,23 +23,27 @@ class ImplPermissionsRepository implements IPermissionsRepository {
     int periodId,
     int studentId,
     int page,
-    String? status,
+    String status,
   ) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
 
     final queryParams = buildQueryParams({
       'page': '$page',
-      'status': '$status',
+      'status': status,
     });
 
     final uri = Uri.parse(
-        "${ENV.backendUrl}/periods/$periodId/students/$studentId/permissions$queryParams");
+        "${ENV.backendUrl}/periods/$periodId/students/$studentId/permissions/$queryParams");
+
+    log(uri.toString());
 
     final response = await http.get(
       uri,
       headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
     );
+
+    log(response.body.toString());
 
     final jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
 
@@ -48,6 +53,7 @@ class ImplPermissionsRepository implements IPermissionsRepository {
     }
 
     if (response.statusCode != 200) {
+      print("error");
       throw Exception(jsonResponse['messsage']);
     }
 

@@ -61,6 +61,16 @@ class PermissionDetailsPage extends ConsumerWidget {
                         ? DateFormat.yMMMMd().format(permission.approvalDate!)
                         : 'N/A',
                   ),
+                  const TextSpan(
+                    text: "\nPlazo para justificar: ",
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  TextSpan(
+                    text: permission.justificationDeadline != null
+                        ? DateFormat.yMMMMd()
+                            .format(permission.justificationDeadline!)
+                        : 'N/A',
+                  ),
                 ],
               ),
             ),
@@ -76,14 +86,18 @@ class PermissionDetailsPage extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SecondaryButton(
-                  onTap: () async {
-                    final Uri url = Uri.parse(permission.evidenceUrl);
-                    await launchUrl(
-                      url,
-                      mode: LaunchMode.externalApplication,
-                    );
-                  },
-                  child: const Text("Ver evidencia"),
+                  onTap: permission.evidenceUrl != null
+                      ? () async {
+                          final Uri url = Uri.parse(permission.evidenceUrl!);
+                          await launchUrl(
+                            url,
+                            mode: LaunchMode.externalApplication,
+                          );
+                        }
+                      : null,
+                  child: permission.evidenceUrl != null
+                      ? const Text("Ver evidencia")
+                      : const Text("Sin evidencia"),
                 ),
               ],
             ),

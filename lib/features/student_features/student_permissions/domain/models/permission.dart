@@ -21,9 +21,10 @@ class Permission with _$Permission {
     required DateTime? approvalDate,
     required DateTime requestDate,
     required String reason,
-    required String evidenceUrl,
+    required String? evidenceUrl,
     required String? studentNote,
     required String? principalNote,
+    required DateTime? justificationDeadline,
   }) = _Permission;
 
   factory Permission.fromJson(Map<String, dynamic> json) =>

@@ -15,9 +15,12 @@ _$PermissionImpl _$$PermissionImplFromJson(Map<String, dynamic> json) =>
           : DateTime.parse(json['approvalDate'] as String),
       requestDate: DateTime.parse(json['requestDate'] as String),
       reason: json['reason'] as String,
-      evidenceUrl: json['evidenceUrl'] as String,
+      evidenceUrl: json['evidenceUrl'] as String?,
       studentNote: json['studentNote'] as String?,
       principalNote: json['principalNote'] as String?,
+      justificationDeadline: json['justificationDeadline'] == null
+          ? null
+          : DateTime.parse(json['justificationDeadline'] as String),
     );
 
 Map<String, dynamic> _$$PermissionImplToJson(_$PermissionImpl instance) =>
@@ -30,6 +33,8 @@ Map<String, dynamic> _$$PermissionImplToJson(_$PermissionImpl instance) =>
       'evidenceUrl': instance.evidenceUrl,
       'studentNote': instance.studentNote,
       'principalNote': instance.principalNote,
+      'justificationDeadline':
+          instance.justificationDeadline?.toIso8601String(),
     };
 
 const _$PermissionStatusEnumMap = {

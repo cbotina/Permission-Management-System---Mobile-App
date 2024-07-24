@@ -6,6 +6,6 @@ abstract class IPermissionsRepository {
     int periodId,
     int studentId,
     int page,
-    String? status,
+    String status,
   );
 }

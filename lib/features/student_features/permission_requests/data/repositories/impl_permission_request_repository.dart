@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -55,7 +56,8 @@ class ImplPermissionRequestRepository implements IPermissionRequestRepository {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final String? token = prefs.getString('token');
 
-    final uri = Uri.parse('${ENV.backendUrl}/permisions/$permissionId');
+    final uri =
+        Uri.parse('${ENV.backendUrl}/permissions/$permissionId/justify');
 
     final response = await http.patch(
       uri,
@@ -66,6 +68,8 @@ class ImplPermissionRequestRepository implements IPermissionRequestRepository {
       body: jsonEncode(dto),
     );
 
+    log(response.body);
+
     final jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
 
     if (jsonResponse['message'] == 'Unauthorized') {
@@ -73,7 +77,7 @@ class ImplPermissionRequestRepository implements IPermissionRequestRepository {
       throw SessionExpiredError('Sesión expirada. Vuelva a Iniciar Sesión');
     }
 
-    if (response.statusCode != 201) {
+    if (response.statusCode != 200) {
       throw Exception(jsonResponse['message']);
     }
   }

@@ -25,9 +25,10 @@ mixin _$Permission {
   DateTime? get approvalDate => throw _privateConstructorUsedError;
   DateTime get requestDate => throw _privateConstructorUsedError;
   String get reason => throw _privateConstructorUsedError;
-  String get evidenceUrl => throw _privateConstructorUsedError;
+  String? get evidenceUrl => throw _privateConstructorUsedError;
   String? get studentNote => throw _privateConstructorUsedError;
   String? get principalNote => throw _privateConstructorUsedError;
+  DateTime? get justificationDeadline => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,9 +48,10 @@ abstract class $PermissionCopyWith<$Res> {
       DateTime? approvalDate,
       DateTime requestDate,
       String reason,
-      String evidenceUrl,
+      String? evidenceUrl,
       String? studentNote,
-      String? principalNote});
+      String? principalNote,
+      DateTime? justificationDeadline});
 }
 
 /// @nodoc
@@ -70,9 +72,10 @@ class _$PermissionCopyWithImpl<$Res, $Val extends Permission>
     Object? approvalDate = freezed,
     Object? requestDate = null,
     Object? reason = null,
-    Object? evidenceUrl = null,
+    Object? evidenceUrl = freezed,
     Object? studentNote = freezed,
     Object? principalNote = freezed,
+    Object? justificationDeadline = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -95,10 +98,10 @@ class _$PermissionCopyWithImpl<$Res, $Val extends Permission>
           ? _value.reason
           : reason // ignore: cast_nullable_to_non_nullable
               as String,
-      evidenceUrl: null == evidenceUrl
+      evidenceUrl: freezed == evidenceUrl
           ? _value.evidenceUrl
           : evidenceUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       studentNote: freezed == studentNote
           ? _value.studentNote
           : studentNote // ignore: cast_nullable_to_non_nullable
@@ -107,6 +110,10 @@ class _$PermissionCopyWithImpl<$Res, $Val extends Permission>
           ? _value.principalNote
           : principalNote // ignore: cast_nullable_to_non_nullable
               as String?,
+      justificationDeadline: freezed == justificationDeadline
+          ? _value.justificationDeadline
+          : justificationDeadline // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -125,9 +132,10 @@ abstract class _$$PermissionImplCopyWith<$Res>
       DateTime? approvalDate,
       DateTime requestDate,
       String reason,
-      String evidenceUrl,
+      String? evidenceUrl,
       String? studentNote,
-      String? principalNote});
+      String? principalNote,
+      DateTime? justificationDeadline});
 }
 
 /// @nodoc
@@ -146,9 +154,10 @@ class __$$PermissionImplCopyWithImpl<$Res>
     Object? approvalDate = freezed,
     Object? requestDate = null,
     Object? reason = null,
-    Object? evidenceUrl = null,
+    Object? evidenceUrl = freezed,
     Object? studentNote = freezed,
     Object? principalNote = freezed,
+    Object? justificationDeadline = freezed,
   }) {
     return _then(_$PermissionImpl(
       id: null == id
@@ -171,10 +180,10 @@ class __$$PermissionImplCopyWithImpl<$Res>
           ? _value.reason
           : reason // ignore: cast_nullable_to_non_nullable
               as String,
-      evidenceUrl: null == evidenceUrl
+      evidenceUrl: freezed == evidenceUrl
           ? _value.evidenceUrl
           : evidenceUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       studentNote: freezed == studentNote
           ? _value.studentNote
           : studentNote // ignore: cast_nullable_to_non_nullable
@@ -183,6 +192,10 @@ class __$$PermissionImplCopyWithImpl<$Res>
           ? _value.principalNote
           : principalNote // ignore: cast_nullable_to_non_nullable
               as String?,
+      justificationDeadline: freezed == justificationDeadline
+          ? _value.justificationDeadline
+          : justificationDeadline // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -198,7 +211,8 @@ class _$PermissionImpl implements _Permission {
       required this.reason,
       required this.evidenceUrl,
       required this.studentNote,
-      required this.principalNote});
+      required this.principalNote,
+      required this.justificationDeadline});
 
   factory _$PermissionImpl.fromJson(Map<String, dynamic> json) =>
       _$$PermissionImplFromJson(json);
@@ -214,15 +228,17 @@ class _$PermissionImpl implements _Permission {
   @override
   final String reason;
   @override
-  final String evidenceUrl;
+  final String? evidenceUrl;
   @override
   final String? studentNote;
   @override
   final String? principalNote;
+  @override
+  final DateTime? justificationDeadline;
 
   @override
   String toString() {
-    return 'Permission(id: $id, status: $status, approvalDate: $approvalDate, requestDate: $requestDate, reason: $reason, evidenceUrl: $evidenceUrl, studentNote: $studentNote, principalNote: $principalNote)';
+    return 'Permission(id: $id, status: $status, approvalDate: $approvalDate, requestDate: $requestDate, reason: $reason, evidenceUrl: $evidenceUrl, studentNote: $studentNote, principalNote: $principalNote, justificationDeadline: $justificationDeadline)';
   }
 
   @override
@@ -242,13 +258,24 @@ class _$PermissionImpl implements _Permission {
             (identical(other.studentNote, studentNote) ||
                 other.studentNote == studentNote) &&
             (identical(other.principalNote, principalNote) ||
-                other.principalNote == principalNote));
+                other.principalNote == principalNote) &&
+            (identical(other.justificationDeadline, justificationDeadline) ||
+                other.justificationDeadline == justificationDeadline));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, status, approvalDate,
-      requestDate, reason, evidenceUrl, studentNote, principalNote);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      status,
+      approvalDate,
+      requestDate,
+      reason,
+      evidenceUrl,
+      studentNote,
+      principalNote,
+      justificationDeadline);
 
   @JsonKey(ignore: true)
   @override
@@ -271,9 +298,10 @@ abstract class _Permission implements Permission {
       required final DateTime? approvalDate,
       required final DateTime requestDate,
       required final String reason,
-      required final String evidenceUrl,
+      required final String? evidenceUrl,
       required final String? studentNote,
-      required final String? principalNote}) = _$PermissionImpl;
+      required final String? principalNote,
+      required final DateTime? justificationDeadline}) = _$PermissionImpl;
 
   factory _Permission.fromJson(Map<String, dynamic> json) =
       _$PermissionImpl.fromJson;
@@ -289,11 +317,13 @@ abstract class _Permission implements Permission {
   @override
   String get reason;
   @override
-  String get evidenceUrl;
+  String? get evidenceUrl;
   @override
   String? get studentNote;
   @override
   String? get principalNote;
+  @override
+  DateTime? get justificationDeadline;
   @override
   @JsonKey(ignore: true)
   _$$PermissionImplCopyWith<_$PermissionImpl> get copyWith =>
