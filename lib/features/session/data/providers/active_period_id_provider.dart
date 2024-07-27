@@ -3,7 +3,7 @@ import 'package:pms_app/features/auth/presentation/controllers/auth_controller.d
 
 final activePeriodIdProvider = Provider<int>((ref) {
   return ref.watch(authControllerProvider).when(
-        data: (data) => data.periodId ?? 0,
+        data: (data) => data.activePeriod?.id ?? 0,
         error: (error, stackTrace) => 0,
         loading: () => 0,
       );

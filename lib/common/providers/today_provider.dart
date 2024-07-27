@@ -6,5 +6,5 @@ final todayProvider = Provider<DateTime>((ref) {
   final month = today.month;
   final day = today.day;
 
-  return DateTime(year, month, day);
+  return DateTime(year, month, 30);
 });

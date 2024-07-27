@@ -19,7 +19,7 @@ mixin _$AuthState {
   AuthResult get authResult => throw _privateConstructorUsedError;
   int? get userId => throw _privateConstructorUsedError;
   int? get entityId => throw _privateConstructorUsedError;
-  int? get periodId => throw _privateConstructorUsedError;
+  Period? get activePeriod => throw _privateConstructorUsedError;
   UserRole? get userRole => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -36,8 +36,10 @@ abstract class $AuthStateCopyWith<$Res> {
       {AuthResult authResult,
       int? userId,
       int? entityId,
-      int? periodId,
+      Period? activePeriod,
       UserRole? userRole});
+
+  $PeriodCopyWith<$Res>? get activePeriod;
 }
 
 /// @nodoc
@@ -56,7 +58,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? authResult = null,
     Object? userId = freezed,
     Object? entityId = freezed,
-    Object? periodId = freezed,
+    Object? activePeriod = freezed,
     Object? userRole = freezed,
   }) {
     return _then(_value.copyWith(
@@ -72,15 +74,27 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
               as int?,
-      periodId: freezed == periodId
-          ? _value.periodId
-          : periodId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      activePeriod: freezed == activePeriod
+          ? _value.activePeriod
+          : activePeriod // ignore: cast_nullable_to_non_nullable
+              as Period?,
       userRole: freezed == userRole
           ? _value.userRole
           : userRole // ignore: cast_nullable_to_non_nullable
               as UserRole?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PeriodCopyWith<$Res>? get activePeriod {
+    if (_value.activePeriod == null) {
+      return null;
+    }
+
+    return $PeriodCopyWith<$Res>(_value.activePeriod!, (value) {
+      return _then(_value.copyWith(activePeriod: value) as $Val);
+    });
   }
 }
 
@@ -96,8 +110,11 @@ abstract class _$$AuthStateImplCopyWith<$Res>
       {AuthResult authResult,
       int? userId,
       int? entityId,
-      int? periodId,
+      Period? activePeriod,
       UserRole? userRole});
+
+  @override
+  $PeriodCopyWith<$Res>? get activePeriod;
 }
 
 /// @nodoc
@@ -114,7 +131,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
     Object? authResult = null,
     Object? userId = freezed,
     Object? entityId = freezed,
-    Object? periodId = freezed,
+    Object? activePeriod = freezed,
     Object? userRole = freezed,
   }) {
     return _then(_$AuthStateImpl(
@@ -130,10 +147,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
           ? _value.entityId
           : entityId // ignore: cast_nullable_to_non_nullable
               as int?,
-      freezed == periodId
-          ? _value.periodId
-          : periodId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      freezed == activePeriod
+          ? _value.activePeriod
+          : activePeriod // ignore: cast_nullable_to_non_nullable
+              as Period?,
       freezed == userRole
           ? _value.userRole
           : userRole // ignore: cast_nullable_to_non_nullable
@@ -145,8 +162,8 @@ class __$$AuthStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AuthStateImpl implements _AuthState {
-  _$AuthStateImpl(this.authResult, this.userId, this.entityId, this.periodId,
-      this.userRole);
+  _$AuthStateImpl(this.authResult, this.userId, this.entityId,
+      this.activePeriod, this.userRole);
 
   @override
   final AuthResult authResult;
@@ -155,13 +172,13 @@ class _$AuthStateImpl implements _AuthState {
   @override
   final int? entityId;
   @override
-  final int? periodId;
+  final Period? activePeriod;
   @override
   final UserRole? userRole;
 
   @override
   String toString() {
-    return 'AuthState(authResult: $authResult, userId: $userId, entityId: $entityId, periodId: $periodId, userRole: $userRole)';
+    return 'AuthState(authResult: $authResult, userId: $userId, entityId: $entityId, activePeriod: $activePeriod, userRole: $userRole)';
   }
 
   @override
@@ -174,15 +191,15 @@ class _$AuthStateImpl implements _AuthState {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.entityId, entityId) ||
                 other.entityId == entityId) &&
-            (identical(other.periodId, periodId) ||
-                other.periodId == periodId) &&
+            (identical(other.activePeriod, activePeriod) ||
+                other.activePeriod == activePeriod) &&
             (identical(other.userRole, userRole) ||
                 other.userRole == userRole));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, authResult, userId, entityId, periodId, userRole);
+      runtimeType, authResult, userId, entityId, activePeriod, userRole);
 
   @JsonKey(ignore: true)
   @override
@@ -196,7 +213,7 @@ abstract class _AuthState implements AuthState {
       final AuthResult authResult,
       final int? userId,
       final int? entityId,
-      final int? periodId,
+      final Period? activePeriod,
       final UserRole? userRole) = _$AuthStateImpl;
 
   @override
@@ -206,7 +223,7 @@ abstract class _AuthState implements AuthState {
   @override
   int? get entityId;
   @override
-  int? get periodId;
+  Period? get activePeriod;
   @override
   UserRole? get userRole;
   @override

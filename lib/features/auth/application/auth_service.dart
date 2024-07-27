@@ -34,7 +34,7 @@ class AuthService {
 
     final period = await _periodsRepository.getActivePeriod();
 
-    return AuthState(AuthResult.success, userId, entityId, period!.id, role);
+    return AuthState(AuthResult.success, userId, entityId, period, role);
   }
 
   Future<AuthState> logout() async {

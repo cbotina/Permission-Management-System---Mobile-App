@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/common/extensions/capitalize.dart';
+import 'package:pms_app/common/providers/repository_providers.dart';
 import 'package:pms_app/common/providers/today_provider.dart';
 import 'package:pms_app/features/teacher_features/daily_reports/presentation/widgets/components/daily_reports_check_box.dart';
 import 'package:pms_app/features/teacher_features/teacher_schedule/data/providers/schedule_with_daily_reports_provider.dart';
@@ -16,6 +17,9 @@ class DailyReportsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final today = ref.watch(todayProvider);
+    ref.invalidate(teacherDailyReportsRepositoryProvider);
+    ref.invalidate(scheduleWithDailyReportsProvider);
+
     log('building');
     return Scaffold(
       appBar: AppBar(
@@ -23,6 +27,7 @@ class DailyReportsPage extends ConsumerWidget {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
+          ref.invalidate(teacherDailyReportsRepositoryProvider);
           ref.invalidate(scheduleWithDailyReportsProvider);
         },
         child: ListView(
@@ -59,6 +64,8 @@ class DailyReportsPage extends ConsumerWidget {
                     );
                   },
                   error: (error, stackTrace) => ErrorWidgetUI(onRefresh: () {
+                    ref.invalidate(teacherDailyReportsRepositoryProvider);
+
                     ref.invalidate(scheduleWithDailyReportsProvider);
                   }),
                   loading: () =>

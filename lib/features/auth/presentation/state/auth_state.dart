@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pms_app/features/auth/domain/enums/user_role.dart';
+import 'package:pms_app/features/session/domain/models/period.dart';
 
 part 'auth_state.freezed.dart';
 
@@ -15,7 +16,7 @@ class AuthState with _$AuthState {
     AuthResult authResult,
     int? userId,
     int? entityId,
-    int? periodId,
+    Period? activePeriod,
     UserRole? userRole,
   ) = _AuthState;
 }
