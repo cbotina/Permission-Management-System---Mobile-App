@@ -12,7 +12,7 @@ class StudentProfileTile extends StatelessWidget {
     return Tile(
       iconData: Icons.person_outlined,
       title: "Mi Perfil",
-      subtitle: "Cambiar foto, cambiar contraseña",
+      subtitle: "Consultar datos, cambiar contraseña",
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {

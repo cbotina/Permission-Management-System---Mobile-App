@@ -64,45 +64,48 @@ class _JustifyLeavingPermissionFormState
       color: Colors.white,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const Text(
             "Justificar Permiso de salida",
             style: TextStyle(fontWeight: FontWeight.w600, fontSize: 21),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 30),
-          Row(
-            children: [
-              SecondaryButton(
-                onTap: _selectFile,
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.upload,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                    Text(
-                      "Subir evidencia",
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                    ),
-                  ],
+          SecondaryButton(
+            onTap: _selectFile,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.upload,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
-              ),
-              const SizedBox(width: 15),
-              Expanded(
-                child: Text(
-                  selectedFileInBytes == null
-                      ? "Ningun archivo seleccionado"
-                      : fileName!,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(fontSize: 14),
+                Text(
+                  "Subir evidencia",
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
+          const SizedBox(height: 15),
+          Text(
+            selectedFileInBytes == null
+                ? "Ningun archivo seleccionado"
+                : fileName!,
+            style:
+                Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 14),
+            textAlign: TextAlign.center,
+          ),
+          // Column(
+          //   children: [
+
+          //     const SizedBox(width: 15),
+
+          //   ],
+          // ),
           const SizedBox(
             height: 15,
           ),
@@ -148,7 +151,12 @@ class JustifyLeavingPermissionFormButton extends ConsumerWidget {
     return PrimaryButton(
       isLoading: state.isLoading,
       enabled: !state.isLoading,
-      child: const Text("Aceptar"),
+      child: const Text(
+        "Aceptar",
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
       onTap: () {
         final info = JustifyLeavingPermissionInfo(
           fileBytes: selectedFileInBytes!,

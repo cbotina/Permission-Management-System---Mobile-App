@@ -15,7 +15,7 @@ class StudentLeavingPermissionsPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Mis Permisos"),
+        title: const Text("Permisos de salida"),
       ),
       body: RefreshIndicator(
         onRefresh: refresh,

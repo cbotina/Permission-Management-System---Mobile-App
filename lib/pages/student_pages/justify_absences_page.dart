@@ -7,6 +7,7 @@ import 'package:pms_app/common/components/buttons/primary_button.dart';
 import 'package:pms_app/common/components/buttons/secondary_button.dart';
 import 'package:pms_app/common/components/form_fields/dropdown_button_form_field.dart';
 import 'package:pms_app/common/components/form_fields/text_form_field.dart';
+import 'package:pms_app/common/constants/default_reasons.dart';
 import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/common/extensions/async_value_ui.dart';
 import 'package:pms_app/features/student_features/permission_requests/presentation/widgets/validators/other_reason_validator.dart';
@@ -106,7 +107,7 @@ class _JustifyAbsencesPageState extends ConsumerState<JustifyAbsencesPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   EnumDropdownButtonFormField(
-                    values: const ['Cita medica', 'Motivos familiares', 'Otro'],
+                    values: defaultReasons,
                     label: "Motivo",
                     onSelected: (reason) {
                       setState(() {
@@ -324,7 +325,7 @@ class JustifiableAbsencesWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          "A continuación, marque las faltas que va a justificar. Recuerde que debe justificar sus faltas en un lapso no mayor a tres días hábiles.",
+          "A continuación, marque las faltas que va a justificar. Recuerde que debe justificar sus faltas en un lapso no mayor a tres días hábiles.\n\nSi usted ha alcanzado el máximo número de faltas disponibles para una unidad de formación, no podrá justificar más faltas para esa unidad de formación.",
           style: TextStyle(
             fontWeight: FontWeight.normal,
             color: Color.fromARGB(255, 87, 87, 87),

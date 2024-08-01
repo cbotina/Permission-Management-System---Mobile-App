@@ -21,7 +21,7 @@ class DateRangeTimeSlotsWidget extends StatelessWidget {
       children: [
         const SizedBox(height: 20),
         const Text(
-          "A continuación, marque las franjas horarias en las que se ausentará",
+          "A continuación, marque las franjas horarias en las que se ausentará.\n\nSolo podrá incluir franjas de unidades de formación que no excedan el máximo número de faltas permitido para dicha unidad de formación. ",
           style: TextStyle(
             fontWeight: FontWeight.normal,
             color: Color.fromARGB(255, 87, 87, 87),

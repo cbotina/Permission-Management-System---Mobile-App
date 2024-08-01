@@ -12,7 +12,7 @@ class TeacherProfileTile extends StatelessWidget {
     return Tile(
       iconData: Icons.timer_sharp,
       title: "Mi perfil",
-      subtitle: "Cambia tu contraseña",
+      subtitle: "Consultar datos, cambiar contraseña",
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) {
