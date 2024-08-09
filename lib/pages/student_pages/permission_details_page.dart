@@ -113,6 +113,23 @@ class PermissionDetailsPage extends ConsumerWidget {
               initialValue: permission.principalNote,
               label: 'Comentario coordinadora',
             ),
+            const SizedBox(height: 15),
+            RichText(
+              text: TextSpan(
+                style:
+                    Theme.of(context).textTheme.bodyMedium?.copyWith(height: 2),
+                children: const [
+                  TextSpan(
+                    text: "Nota: ",
+                    style: TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  TextSpan(
+                    text:
+                        'Es responsabilidad del estudiante contactar a los docentes para acordar las actividades pendientes en las diferentes unidades de formación cursadas en la fecha(s) de ausencia.',
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

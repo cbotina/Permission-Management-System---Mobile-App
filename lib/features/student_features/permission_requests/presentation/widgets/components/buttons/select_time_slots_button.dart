@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:pms_app/common/components/buttons/primary_button.dart';
 import 'package:pms_app/common/components/buttons/secondary_button.dart';
 import 'package:pms_app/features/session/data/providers/active_period_id_provider.dart';
 import 'package:pms_app/features/session/data/providers/active_period_provider.dart';
@@ -42,7 +43,34 @@ class SelectTimeSlotsButton extends ConsumerWidget {
           locale: const Locale('es', "ES"),
           initialEntryMode: DatePickerEntryMode.calendarOnly,
         );
+
         if (dateTimeRange != null) {
+          if (dateTimeRange.duration.inDays >= 15) {
+            if (context.mounted) {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: const Text(
+                        "Ha seleccionado demasiados días. El límite es 15"),
+                    actions: [
+                      PrimaryButton(
+                        child: const Text(
+                          "Entendido",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+              return;
+            }
+          }
+
           ref.invalidate(dayTimeSlotsProvider);
           ref.invalidate(selectedAbsenceTimeSlotsProvider);
           setRange(dateTimeRange);
