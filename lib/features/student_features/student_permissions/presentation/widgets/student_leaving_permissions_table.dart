@@ -1,19 +1,14 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:pms_app/common/components/buttons/primary_button.dart';
 import 'package:pms_app/common/components/table/pagination_widget.dart';
 import 'package:pms_app/common/components/table/table.dart';
 import 'package:pms_app/common/components/table/table_cell.dart';
 import 'package:pms_app/common/components/table/table_label.dart';
 import 'package:pms_app/common/errors/error_widget.dart';
 import 'package:pms_app/features/student_features/student_permissions/data/providers/student_leaving_permissions_provider.dart';
-import 'package:pms_app/features/student_features/student_permissions/data/providers/student_period_permissions_provider.dart';
 import 'package:pms_app/features/student_features/student_permissions/domain/models/permission.dart';
 import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/buttons/jusitfy_leaving_permission_button.dart';
-import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/permission_status.dart';
 import 'package:pms_app/pages/student_pages/permission_details_page.dart';
 
 class StudentLeavingPermissionsTable extends ConsumerStatefulWidget {

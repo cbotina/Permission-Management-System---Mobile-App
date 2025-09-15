@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/features/student_features/student_permissions/data/providers/student_leaving_permissions_provider.dart';
 import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/student_leaving_permissions_table.dart';
-import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/student_permissions_table.dart';
 
 class StudentLeavingPermissionsPage extends ConsumerWidget {
   const StudentLeavingPermissionsPage({super.key});

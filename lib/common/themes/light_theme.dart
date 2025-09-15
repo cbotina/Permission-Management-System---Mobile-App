@@ -92,7 +92,7 @@ final lightTheme = ThemeData(
   //     color: Colors.white,
   //   ),
   // ),
-  dialogTheme: DialogTheme(
+  dialogTheme: DialogThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10),
     ),

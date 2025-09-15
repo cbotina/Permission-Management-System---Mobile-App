@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pms_app/common/components/tile.dart';
 import 'package:pms_app/pages/student_pages/student_leaving_permissions_page.dart';
-import 'package:pms_app/pages/student_pages/student_permissions_page.dart';
 
 class StudentLeavingPermissionsTile extends StatelessWidget {
   const StudentLeavingPermissionsTile({

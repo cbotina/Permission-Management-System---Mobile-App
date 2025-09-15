@@ -28,7 +28,7 @@ class PrimaryButton extends StatelessWidget {
       child: InkWell(
         onTap: enabled && !isLoading ? onTap : null,
         splashColor: Colors.tealAccent,
-        hoverColor: hoverColor ?? Colors.tealAccent.withOpacity(.5),
+        hoverColor: hoverColor ?? Colors.tealAccent.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(7),
         child: Ink(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),

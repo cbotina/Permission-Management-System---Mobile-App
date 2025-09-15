@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:pms_app/common/components/buttons/primary_button.dart';
 import 'package:pms_app/common/components/buttons/secondary_button.dart';
-import 'package:pms_app/features/session/data/providers/active_period_id_provider.dart';
 import 'package:pms_app/features/session/data/providers/active_period_provider.dart';
 import 'package:pms_app/features/student_features/permission_requests/data/providers/day_time_slots_provider.dart';
 import 'package:pms_app/features/student_features/permission_requests/data/providers/selected_absence_time_slots_provider.dart';
