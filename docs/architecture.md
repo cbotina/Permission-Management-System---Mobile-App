@@ -49,6 +49,8 @@ feature_name/
 │   ├── dto/                      # Data transfer objects
 │   ├── providers/                # Riverpod providers
 │   └── repositories/             # Repository implementations
+│       ├── impl_*.dart           # Real repository implementations
+│       └── mock_*.dart           # Mock repository implementations
 ├── domain/
 │   ├── models/                   # Business entities
 │   └── enums/                    # Domain enumerations
@@ -273,6 +275,46 @@ abstract class IFeatureRepository {
   Future<void> deleteData(int id);
 }
 ```
+
+### Mock Repository Pattern
+Each abstract repository has a corresponding mock implementation for testing purposes:
+
+```dart
+class MockFeatureRepository implements IFeatureRepository {
+  @override
+  Future<List<Model>> getData() async {
+    return Future.value(mockData);
+  }
+
+  @override
+  Future<Model> createData(CreateDto dto) async {
+    return Future.value(mockCreatedModel);
+  }
+
+  @override
+  Future<Model> updateData(int id, UpdateDto dto) async {
+    return Future.value(mockUpdatedModel);
+  }
+
+  @override
+  Future<void> deleteData(int id) async {
+    // Mock implementation - no actual deletion
+  }
+}
+
+// Mock data constants
+const List<Model> mockData = [
+  Model(id: 1, name: 'Test Item 1'),
+  Model(id: 2, name: 'Test Item 2'),
+];
+```
+
+**Mock Repository Benefits**:
+- **Testing Isolation**: Enables testing without external dependencies
+- **Predictable Data**: Provides consistent test data for reliable tests
+- **Fast Execution**: Eliminates network calls and database operations
+- **Error Simulation**: Allows testing error scenarios easily
+- **Development**: Enables development without backend services
 
 ### DTO Pattern
 Data Transfer Objects handle API communication:
@@ -550,27 +592,46 @@ class ThemedComponent extends StatelessWidget {
 
 ### Testing Strategy
 
-#### Unit Testing
-- **Models**: Test data serialization/deserialization
-- **Services**: Test business logic
-- **Controllers**: Test state management
-- **Repositories**: Test data access logic
-
 #### Widget Testing
-- **Components**: Test UI behavior
-- **Feature Widgets**: Test feature-specific UI
-- **Pages**: Test page composition
+We only need widget testing. Typically a component is tested using its 'Page' component, unless specified.
+- Use ProviderScope with overrides when needed to test multiple scenarios
+- Include only the requested specs in the action plan
+- Test files should be placed under `test/{feature_name}/`
 
-#### Integration Testing
-- **Feature Flows**: Test complete user journeys
-- **Navigation**: Test screen transitions
-- **State Management**: Test provider interactions
+#### Mock Repository Usage in Tests
+Mock repositories are used to provide test data and isolate components from external dependencies:
+
+```dart
+// Example test with mock repository override
+testWidgets('FeaturePage displays data correctly', (tester) async {
+  await tester.pumpWidget(
+    ProviderScope(
+      overrides: [
+        featureRepositoryProvider.overrideWithValue(MockFeatureRepository()),
+      ],
+      child: const MaterialApp(home: FeaturePage()),
+    ),
+  );
+
+  await tester.pumpAndSettle();
+  
+  expect(find.text('Test Item 1'), findsOneWidget);
+  expect(find.text('Test Item 2'), findsOneWidget);
+});
+```
+
+**Mock Repository Testing Benefits**:
+- **Consistent Test Data**: All tests use the same predictable data
+- **Fast Test Execution**: No network or database dependencies
+- **Error Scenario Testing**: Easy to simulate different error conditions
+- **Isolated Testing**: Tests focus on component behavior, not data fetching
 
 ### Code Organization
 
 #### File Naming Conventions
 - **Models**: `feature_model.dart`
 - **Repositories**: `impl_feature_repository.dart`
+- **Mock Repositories**: `mock_feature_repository.dart`
 - **Controllers**: `feature_controller.dart`
 - **Widgets**: `feature_widget.dart`
 - **Pages**: `feature_page.dart`
