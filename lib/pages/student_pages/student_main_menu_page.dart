@@ -4,6 +4,7 @@ import 'package:pms_app/features/student_features/permission_requests/presentati
 import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/student_leaving_permissions_tile.dart';
 import 'package:pms_app/features/student_features/student_permissions/presentation/widgets/components/student_permissions_tile.dart';
 import 'package:pms_app/features/student_features/student_profile/presentation/widgets/components/student_profile_tile.dart';
+import 'package:pms_app/features/student_features/student_enrollments/presentation/widgets/components/student_enrollments_tile.dart';
 import 'package:pms_app/features/student_features/student_schedule/presentation/widgets/components/student_schedule_tile.dart';
 import 'package:pms_app/features/student_features/student_unjustified_absences/presentation/widgets/components/student_unjustified_absences_tile.dart';
 
@@ -23,6 +24,7 @@ class StudentMainMenuPage extends StatelessWidget {
           StudentPermissionsTile(),
           StudentLeavingPermissionsTile(),
           StudentScheduleTile(),
+          StudentEnrollmentsTile(),
           StudentAbsencesTile(),
           StudentProfileTile(),
           LogoutTile(),
