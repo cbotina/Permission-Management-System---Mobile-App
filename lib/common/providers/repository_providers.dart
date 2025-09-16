@@ -11,6 +11,8 @@ import 'package:pms_app/features/student_features/student_permissions/data/abstr
 import 'package:pms_app/features/student_features/student_permissions/data/abstract_repositories/permission_repository.dart';
 import 'package:pms_app/features/student_features/student_permissions/data/repositories/impl_permission_absences_repository.dart';
 import 'package:pms_app/features/student_features/student_permissions/data/repositories/impl_permissions_repository.dart';
+import 'package:pms_app/features/student_features/student_enrollments/data/abstract_repositories/student_enrollments_repository.dart';
+import 'package:pms_app/features/student_features/student_enrollments/data/repositories/impl_student_enrollments_repository.dart';
 import 'package:pms_app/features/student_features/student_profile/data/abstract_repositories/students_repository.dart';
 import 'package:pms_app/features/student_features/student_profile/data/repositories/impl_students_repository.dart';
 import 'package:pms_app/features/student_features/student_schedule/data/abstract_repositories/student_schedule_repository.dart';
@@ -127,4 +129,9 @@ final teachersRepositoryProvider = Provider<ITeachersRepository>((ref) {
 
 final dailyReportsRepositoryProvider = Provider<IDailyReportsRepository>((ref) {
   return ImplDailyReportsRepository(ref: ref);
+});
+
+final studentEnrollmentsRepositoryProvider =
+    Provider<IStudentEnrollmentsRepository>((ref) {
+  return ImplStudentEnrollmentsRepository(ref: ref);
 });
